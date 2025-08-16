@@ -216,4 +216,3 @@ MIT لائسنس کے تحت تقسیم کیا گیا ہے۔ مزید معلوم
 Yasin Ullah - [@yasinULLAH](https://github.com/yasinULLAH) - yasincomps@gmail.com
 
 Project Link: [https://github.com/yasinULLAH/newpaper](https://github.com/yasinULLAH/newpaper)
-```
