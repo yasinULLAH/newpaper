@@ -52,7 +52,7 @@ A comprehensive, multilingual (English & Urdu) newspaper management system built
 
 1.  **Clone the repository** | **ریپوزٹری کلون کریں**:
     ```bash
-    git clone [https://github.com/your-username/pakistan-times.git](https://github.com/your-username/pakistan-times.git)
+    git clone [https://github.com/yasinULLAH/newpaper.git](https://github.com/yasinULLAH/newpaper.git)
     ```
 2.  **Navigate to the project directory** | **پروجیکٹ ڈائریکٹری میں جائیں**:
     ```bash
