@@ -213,7 +213,7 @@ MIT لائسنس کے تحت تقسیم کیا گیا ہے۔ مزید معلوم
 
 ### **📞 Contact | رابطہ**
 
-Yasin Ullah - [@yasinULLAH](https://github.com/yasinULLAH) - yasinullah.cs@gmail.com
+Yasin Ullah - [@yasinULLAH](https://github.com/yasinULLAH) - yasincomps@gmail.com
 
 Project Link: [https://github.com/yasinULLAH/newpaper](https://github.com/yasinULLAH/newpaper)
 ```
