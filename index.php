@@ -208,7 +208,6 @@ if ($admin_check['count'] == 0) {
     ];
     foreach ($categories as $cat) {
         $stmt = $conn->prepare("INSERT INTO categories (name_en, name_ur, slug) VALUES (?, ?, ?)");
-
         $name_en = $cat[0];
         $name_ur = $cat[1];
         $slug = $cat[2];
@@ -362,14 +361,11 @@ function is_subscribed($user_id)
     return $row['active_subscriptions'] > 0;
 }
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-
-
     if (isset($_POST['send_contact_message'])) {
         $name = htmlspecialchars(trim($_POST['contact_name']));
         $email = filter_var(trim($_POST['contact_email']), FILTER_SANITIZE_EMAIL);
         $subject = htmlspecialchars(trim($_POST['contact_subject']));
         $message = htmlspecialchars(trim($_POST['contact_message']));
-
         if (empty($name) || !filter_var($email, FILTER_VALIDATE_EMAIL) || empty($subject) || empty($message)) {
             $error = ($lang === 'ur' ? 'براہ کرم تمام فیلڈز کو درست طریقے سے پُر کریں۔' : 'Please fill all fields correctly.');
         } else {
@@ -379,7 +375,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $headers .= "Reply-To: " . $email . "\r\n";
             $headers .= "Content-Type: text/plain; charset=UTF-8\r\n";
             $headers .= "X-Mailer: PHP/" . phpversion();
-
             $email_body = "You have received a new message from the Islamic Times contact form.\n\n";
             $email_body .= "----------------------------------------\n";
             $email_body .= "Name:    $name\n";
@@ -387,7 +382,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $email_body .= "Subject: $subject\n";
             $email_body .= "----------------------------------------\n\n";
             $email_body .= "Message:\n$message\n";
-
             if (mail($to, $email_subject, $email_body, $headers)) {
                 $success = ($lang === 'ur' ? 'آپ کا پیغام کامیابی سے بھیج دیا گیا ہے۔' : 'Your message has been sent successfully.');
             } else {
@@ -1375,9 +1369,15 @@ if ($view === 'article' && $article_id) {
         $stmt_seo->execute();
         $seo_data = $stmt_seo->get_result()->fetch_assoc();
         if ($seo_data) {
-            $current_meta_title = $lang === 'ur' ? ($seo_data['seo_meta_title_ur'] ?: $seo_data['seo_meta_title_en']) : ($seo_data['seo_meta_title_en'] ?: $seo_data['seo_meta_title_ur']);
-            $current_meta_description = $lang === 'ur' ? ($seo_data['seo_meta_description_ur'] ?: $seo_data['seo_meta_description_en']) : ($seo_data['seo_meta_description_en'] ?: $seo_data['seo_meta_description_ur']);
-            $current_meta_keywords = $lang === 'ur' ? ($seo_data['seo_keywords_ur'] ?: $seo_data['seo_keywords_en']) : ($seo_data['seo_keywords_en'] ?: $seo_data['seo_keywords_ur']);
+            $title_primary = $lang === 'ur' ? $seo_data['seo_meta_title_ur'] : $seo_data['seo_meta_title_en'];
+            $title_fallback = $lang === 'ur' ? $seo_data['seo_meta_title_en'] : $seo_data['seo_meta_title_ur'];
+            $desc_primary = $lang === 'ur' ? $seo_data['seo_meta_description_ur'] : $seo_data['seo_meta_description_en'];
+            $desc_fallback = $lang === 'ur' ? $seo_data['seo_meta_description_en'] : $seo_data['seo_meta_description_ur'];
+            $keys_primary = $lang === 'ur' ? $seo_data['seo_keywords_ur'] : $seo_data['seo_keywords_en'];
+            $keys_fallback = $lang === 'ur' ? $seo_data['seo_keywords_en'] : $seo_data['seo_keywords_ur'];
+            $current_meta_title = $title_primary ?? $title_fallback ?? $current_meta_title;
+            $current_meta_description = $desc_primary ?? $desc_fallback ?? $current_meta_description;
+            $current_meta_keywords = $keys_primary ?? $keys_fallback ?? $current_meta_keywords;
         }
     }
     ?>
@@ -1392,40 +1392,24 @@ if ($view === 'article' && $article_id) {
 
         :root {
             --primary-color: #28a745;
-
             --secondary-color: #007bff;
-
             --accent-color: #ffc107;
-
             --text-color: #343a40;
-
             --bg-color: #f8f9fa;
-
             --card-bg: #ffffff;
-
             --border-color: #e0e0e0;
-
             --heading-color: #1a365d;
-
         }
 
         [data-theme="dark"] {
             --primary-color: #155724;
-
             --secondary-color: #0d6efd;
-
             --accent-color: #d68f00;
-
             --text-color: #e2e8f0;
-
             --bg-color: #212529;
-
             --card-bg: #343a40;
-
             --border-color: #495057;
-
             --heading-color: #f8f9fa;
-
         }
 
         * {
@@ -2338,7 +2322,6 @@ if ($view === 'article' && $article_id) {
                     case 'contact':
                         include_contact_view();
                         break;
-
                     case 'islamic-calendar':
                         include_islamic_calendar_view();
                         break;
@@ -4910,7 +4893,6 @@ if ($view === 'article' && $article_id) {
         function getLiveWeather() {
             const weatherWidget = document.getElementById('weather-widget');
             if (!weatherWidget) return;
-
             const lang = document.documentElement.lang;
 
             function getWeatherInfo(code) {
@@ -4977,7 +4959,6 @@ if ($view === 'article' && $article_id) {
                     ur: 'موسم دستیاب نہیں'
                 };
             }
-
             if (navigator.geolocation) {
                 navigator.geolocation.getCurrentPosition(position => {
                     const {
@@ -4985,21 +4966,18 @@ if ($view === 'article' && $article_id) {
                         longitude
                     } = position.coords;
                     const apiUrl = `https://api.open-meteo.com/v1/forecast?latitude=${latitude}&longitude=${longitude}&current=temperature_2m,relativehumidity_2m,apparent_temperature,precipitation,weathercode,windspeed_10m`;
-
                     fetch(apiUrl)
                         .then(response => response.json())
                         .then(data => {
                             if (data && data.current) {
                                 const current = data.current;
                                 const units = data.current_units;
-
                                 const tempC = Math.round(current.temperature_2m);
                                 const feelsLike = Math.round(current.apparent_temperature);
                                 const humidity = current.relativehumidity_2m;
                                 const windSpeed = current.windspeed_10m;
                                 const precipitation = current.precipitation;
                                 const weatherInfo = getWeatherInfo(current.weathercode);
-
                                 let html = '';
                                 if (lang === 'ur') {
                                     html = `
@@ -5041,9 +5019,7 @@ if ($view === 'article' && $article_id) {
             const islamicDatePage = document.getElementById('islamic-date');
             const prayerTimesPage = document.getElementById('prayer-times-widget');
             const lang = document.documentElement.lang;
-
             if (hijriDateElement) {
-
                 fetch('https://api.aladhan.com/v1/gToH')
                     .then(response => response.json())
                     .then(data => {
@@ -5053,7 +5029,6 @@ if ($view === 'article' && $article_id) {
                             const month = lang === 'ur' ? hijri.month.ar : hijri.month.en;
                             const year = lang === 'ur' ? convertToUrduNumbers(hijri.year) : hijri.year;
                             const weekday = lang === 'ur' ? hijri.weekday.ar : hijri.weekday.en;
-
                             const hijriDateStr = `${weekday}, ${day} ${month} ${year} Hijri`;
                             if (hijriDateElement) hijriDateElement.textContent = hijriDateStr;
                             if (islamicDatePage) islamicDatePage.textContent = hijriDateStr;
@@ -5068,7 +5043,6 @@ if ($view === 'article' && $article_id) {
                         if (islamicDatePage) islamicDatePage.textContent = lang === 'ur' ? 'تاریخ لوڈ کرنے میں ناکامی' : 'Failed to load date';
                     });
             }
-
             if (prayerTimesList || prayerTimesPage) {
                 if (navigator.geolocation) {
                     navigator.geolocation.getCurrentPosition(position => {
@@ -5080,9 +5054,7 @@ if ($view === 'article' && $article_id) {
                         const year = date.getFullYear();
                         const month = date.getMonth() + 1;
                         const day = date.getDate();
-
                         const prayerApiUrl = `https://api.aladhan.com/v1/timings/${day}-${month}-${year}?latitude=${latitude}&longitude=${longitude}&method=2`;
-
                         fetch(prayerApiUrl)
                             .then(response => response.json())
                             .then(data => {
@@ -5096,10 +5068,8 @@ if ($view === 'article' && $article_id) {
                                         Maghrib: lang === 'ur' ? 'مغرب' : 'Maghrib',
                                         Isha: lang === 'ur' ? 'عشاء' : 'Isha'
                                     };
-
                                     let sidebarHtml = '';
                                     let pageHtml = '<ul class="list-unstyled">';
-
                                     ['Fajr', 'Sunrise', 'Dhuhr', 'Asr', 'Maghrib', 'Isha'].forEach(p => {
                                         const time = timings[p];
                                         const displayTime = lang === 'ur' ? convertToUrduNumbers(time) : time;
@@ -5107,7 +5077,6 @@ if ($view === 'article' && $article_id) {
                                         pageHtml += `<li><strong>${prayerNames[p]}:</strong> <span dir="ltr">${displayTime}</span></li>`;
                                     });
                                     pageHtml += '</ul>';
-
                                     if (prayerTimesList) prayerTimesList.innerHTML = sidebarHtml;
                                     if (prayerTimesPage) prayerTimesPage.innerHTML = pageHtml;
                                 } else {
@@ -5130,7 +5099,6 @@ if ($view === 'article' && $article_id) {
                 }
             }
         }
-
 
         function toggleTheme() {
             const body = document.body;
