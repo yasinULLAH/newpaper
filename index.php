@@ -223,7 +223,7 @@ if ($admin_check['count'] == 0) {
             'content_ur' => 'اسلام میں علم کا حصول صرف حوصلہ افزائی نہیں بلکہ ہر مسلمان کے لیے ایک مقدس فریضہ سمجھا جاتا ہے۔ قرآن و حدیث میں بار بار علم کی فضیلت پر زور دیا گیا ہے، اسے اللہ کی تخلیق، اس کے احکامات کو سمجھنے اور ایک بامقصد زندگی گزارنے کا ذریعہ قرار دیا گیا ہے۔ اسلام کے ابتدائی ایام سے ہی تعلیم اور فکری سرگرمیوں پر بہت زور دیا گیا، جس سے سائنس، طب اور فلسفہ کے مختلف شعبوں میں اہم ترقی ہوئی، یہ مضمون ان بنیادی نصوص اور تاریخی سیاق و سباق کو تلاش کرتا ہے جو علم پر اس گہرے زور اور اسلامی تہذیب کی ترقی پر اس کے اثرات کو نمایاں کرتے ہیں۔ یہ بحث کرتا ہے کہ علم ایک روشنی کے طور پر کس طرح کام کرتا ہے، جہالت کو دور کرتا ہے اور مومنوں کو سچائی اور راستبازی کی طرف رہنمائی کرتا ہے۔ علم کا حصول مذہبی اور دنیاوی دونوں علوم پر محیط ہے، کیونکہ دونوں کو کائنات میں موجود الہی حکمت کو سمجھنے اور سراہنے کے راستے کے طور پر دیکھا جاتا ہے۔ علم کا سفر گہوارے سے لحد تک جاری رہتا ہے، جو فرد اور معاشرے میں فکری نشوونما اور اخلاقی ترقی کو فروغ دیتا ہے۔ علمی کوششوں میں مشغول ہو کر، مسلمان انسانیت کی بہتری میں حصہ ڈال سکتے ہیں، زمین کے رکھوالے کے طور پر اپنا کردار ادا کر سکتے ہیں اور امن و انصاف کا پیغام پھیلا سکتے ہیں۔ علم پر اس زور نے تاریخی طور پر مسلم معاشروں کو متعدد سائنسی اور فلسفیانہ شعبوں میں پیشرو بننے پر مجبور کیا، جس سے عالمی تہذیب میں بے پناہ حصہ ڈالا۔ کتب خانے اور تعلیمی مراکز پھلے پھولے، دنیا کے کونے کونے سے علماء کو اپنی طرف متوجہ کیا، جو بھرپور فکری ماحول میں حصہ لینے اور اس سے مستفید ہونے کے لیے بے تاب تھے۔ یہ فکری وراثت نسلوں کو متاثر کرتی رہتی ہے، یہ اس بات پر زور دیتی ہے کہ علم کا حصول اسلامی طرز زندگی کا ایک اہم جزو ہے۔ یہ ہمیں یاد دلاتا ہے کہ حکمت مومن کی گمشدہ میراث ہے، اور جہاں کہیں اسے ملے وہ اس کا سب سے زیادہ حقدار ہے۔ اس طرح، تعلیم صرف ایک ذاتی کوشش نہیں بلکہ ایک اجتماعی ذمہ داری ہے، جو اس بات کو یقینی بناتی ہے کہ علم کی روشنی آنے والی نسلوں کے لیے راستوں کو روشن کرتی رہے اور عالمی خوشحالی میں حصہ ڈالے۔',
             'category_slug' => 'islamic-studies',
             'is_breaking' => 1,
-            'image' => 'https://via.placeholder.com/600x400/28a745/ffffff?text=Islamic+Knowledge',
+            'image' => 'new.jpg',
             'is_sponsored' => 0,
             'published_at' => date('Y-m-d H:i:s', strtotime('-1 day'))
         ],
@@ -234,7 +234,7 @@ if ($admin_check['count'] == 0) {
             'content_ur' => 'مغربی معاشروں میں مسلم نوجوانوں کو منفرد چیلنجز اور مواقع کا سامنا ہے۔ سیکولر ڈھانچے میں اپنی مذہبی شناخت کو قائم رکھنا، اسلامو فوبیا سے نمٹنا، اور وسیع تر معاشرے میں ضم ہوتے ہوئے ثقافتی ورثے کو برقرار رکھنا عام جدوجہد ہیں۔ تاہم، یہ ماحول تعلیم، پیشہ ورانہ ترقی، اور سول سوسائٹی میں فعال شرکت کے لیے بے مثال مواقع بھی فراہم کرتے ہیں۔ بہت سے نوجوان مسلمان ان مواقع کو ثقافتی خلیجوں کو پاٹنے، اپنی برادریوں میں مثبت حصہ ڈالنے، اور اسلام کی ایک مستند تصویر پیش کرنے کے لیے استعمال کر رہے ہیں۔ یہ مضمون ان کے تجربات کے مختلف پہلوؤں کو تلاش کرتا ہے، جس میں لچک، وکالت، اور کمیونٹی کی تعمیر کی حکمت عملیوں پر توجہ مرکوز کی گئی ہے۔ یہ مسلم نوجوانوں کی قیادت میں تعلیم، کاروبار، اور سماجی سرگرمیوں میں کامیاب اقدامات کو نمایاں کرتا ہے، جو ان کے اپنے مستقبل اور وسیع تر سماجی منظر نامے کو تشکیل دینے میں ان کے متحرک کردار کو ظاہر کرتا ہے۔ مضبوط کمیونٹی سپورٹ، مذہبی تعلیم، اور بین المذاہب مکالمے کا کردار ان نوجوانوں کو بااختیار بنانے میں اہم ہے۔ شناخت کے بحران، دماغی صحت، اور امتیازی سلوک جیسے مسائل سے نمٹنے کے لیے خاندانوں، مذہبی اداروں، اور تعلیمی اداروں کو شامل کرتے ہوئے ایک کثیر جہتی نقطہ نظر کی ضرورت ہے۔ اس کے برعکس، مغربی معاشروں کی طرف سے پیش کردہ مواقع، جیسے اظہار رائے کی آزادی اور متنوع تعلیمی وسائل تک رسائی، مسلم نوجوانوں میں تنقیدی سوچ اور فکری ترقی کو فروغ دے سکتی ہے۔ ان کی تعلیمی، فنون لطیفہ، اور سیاسی شعبوں میں فعال شرکت ان اقوام کے کثیر الثقافتی ڈھانچے کو تقویت بخشتی ہے۔ خود اور کمیونٹی کے ایک مضبوط احساس کو فروغ دے کر، یہ نوجوان مسلمان مثبت تبدیلی کے طاقتور ایجنٹ بن سکتے ہیں، جو ایک زیادہ جامع اور باہم سمجھوتہ کرنے والی دنیا میں حصہ ڈال سکتے ہیں۔ ان کی منفرد پوزیشن انہیں اپنے ایمان اور ورثے سے طاقت حاصل کرنے کی اجازت دیتی ہے جبکہ جدید معاشروں کی پیش کردہ ترقیوں اور آزادیوں کو قبول کرتے ہیں۔ مغرب میں مسلم نوجوانوں کا بیانیہ لچک، جدت، اور اپنے ایمان اور اپنے معاشروں دونوں کے لیے ایک مضبوط عزم کا ہے۔',
             'category_slug' => 'muslim-world-news',
             'is_breaking' => 0,
-            'image' => 'https://via.placeholder.com/600x400/007bff/ffffff?text=Muslim+Youth',
+            'image' => 'new.jpg',
             'is_sponsored' => 0,
             'published_at' => date('Y-m-d H:i:s', strtotime('-2 days'))
         ],
@@ -245,7 +245,7 @@ if ($admin_check['count'] == 0) {
             'content_ur' => 'اسلامی مالیات ایک تیزی سے ترقی پذیر شعبہ ہے جو اسلامی قانون (شریعت) سے ماخوذ اصولوں پر کام کرتا ہے۔ روایتی مالیات کے برعکس، یہ سود (ربا)، ضرورت سے زیادہ غیر یقینی (غرر)، اور جوئے (میسر) کو ممنوع قرار دیتا ہے۔ اس کے بجائے، یہ خطرے کی شراکت، اخلاقی سرمایہ کاری، اور ٹھوس اثاثہ جات پر مبنی لین دین کو فروغ دیتا ہے۔ اہم آلات میں مضاربہ (منافع کی شراکت)، مشارکہ (مشترکہ منصوبہ)، مرابحہ (لاگت جمع منافع پر مالیات)، اور اجارہ (لیزنگ) شامل ہیں۔ یہ مضمون ان بنیادی اصولوں کا ایک جائزہ فراہم کرتا ہے اور یہ بھی بتاتا ہے کہ اسلامی مالیاتی ادارے عالمی سطح پر کیسے کام کرتے ہیں۔ یہ اسلامی مالیات کے اخلاقی پہلوؤں کو گہرائی سے بیان کرتا ہے، جس میں سماجی انصاف، دولت کی مساوی تقسیم، اور استحصال پر مبنی طریقوں سے گریز پر زور دیا گیا ہے۔ اسلامی بینکاری، صکوک (اسلامی بانڈز)، اور تکافل (اسلامی بیمہ) کی ترقی شریعت کے مطابق مالیاتی مصنوعات کی بڑھتی ہوئی مانگ کو ظاہر کرتی ہے۔ چیلنجز میں مختلف دائرہ اختیار میں معیاری کاری اور مصنوعات کی ترقی میں زیادہ جدت کی ضرورت شامل ہے۔ تاہم، اخلاقی سرمایہ کاری اور سماجی ذمہ داری پر توجہ اسلامی مالیات کو مسلمانوں اور غیر مسلموں دونوں کے لیے ایک پرکشش متبادل بناتی ہے جو پائیدار اور اقدار پر مبنی مالیاتی حل تلاش کر رہے ہیں۔ "مقاصد الشریعہ" (اسلامی قانون کے مقاصد) کا تصور اسلامی مالیاتی مصنوعات کی ترقی کی رہنمائی میں اہم کردار ادا کرتا ہے، اس بات کو یقینی بناتا ہے کہ وہ معاشرے کی فلاح و بہبود میں حصہ ڈالیں۔ اس میں حقیقی اقتصادی سرگرمیوں کو فروغ دینا، قیاس آرائی پر مبنی لین دین کی حوصلہ شکنی کرنا، اور مالی شمولیت کو فروغ دینا شامل ہے۔ ٹیکنالوجی کا انضمام، خاص طور پر فن ٹیک، اسلامی مالیات کے لیے ایک وسیع سامعین تک پہنچنے اور زیادہ قابل رسائی خدمات پیش کرنے کے نئے راستے بھی کھول رہا ہے۔ یہ توسیع اخلاقی مالیاتی حل فراہم کرنے کے عزم کو نمایاں کرتی ہے جو اسلام کے اخلاقی ڈھانچے کے مطابق ہیں۔',
             'category_slug' => 'fiqh-sharia',
             'is_breaking' => 1,
-            'image' => 'https://via.placeholder.com/600x400/ffc107/333333?text=Islamic+Finance',
+            'image' => 'new.jpg',
             'is_sponsored' => 1,
             'published_at' => date('Y-m-d H:i:s', strtotime('-3 days'))
         ],
@@ -256,7 +256,7 @@ if ($admin_check['count'] == 0) {
             'content_ur' => 'اسلامی تہذیب نے اپنی شاندار تعمیراتی کامیابیوں کے ذریعے دنیا پر ایک انمٹ نقش چھوڑا ہے۔ استنبول اور قاہرہ کی پرشکوہ مساجد سے لے کر الحمرا کے پیچیدہ محلات اور بغداد کی جدید شہری منصوبہ بندی تک، اسلامی فن تعمیر فنکارانہ ذہانت، سائنسی علم، اور روحانی علامت کا ایک بھرپور امتزاج ظاہر کرتا ہے۔ یہ مضمون اسلامی فن تعمیر کو متعین کرنے والے کلیدی عناصر کو تلاش کرتا ہے، جن میں ہندسی نمونے، خطاطی، محرابیں، گنبد، اور صحن شامل ہیں، اور مختلف علاقوں اور خاندانوں میں ان کے ارتقاء کو بیان کرتا ہے۔ یہ اس بات پر روشنی ڈالتا ہے کہ یہ ڈھانچے صرف عمارتیں نہیں تھے بلکہ اسلامی عقیدے، ثقافت، اور سماجی اقدار کا ایک زندہ اظہار تھے۔ فارسی، بازنطینی، اور رومن سمیت مختلف اثرات کے امتزاج نے ایک منفرد تعمیراتی زبان کو جنم دیا جس میں ہم آہنگی، توازن، اور الہی خوبصورتی پر زور دیا گیا تھا۔ پانی کی خصوصیات، باغات، اور روشنی کے استعمال نے روحانی اور جمالیاتی تجربے کو مزید بڑھایا۔ گنبد الصخرہ، قرطبہ کی عظیم مسجد، اور تاج محل جیسی مثالیں اسلامی تعمیراتی عظمت کی پائیدار وراثت کے ثبوت کے طور پر کھڑی ہیں، جو دنیا بھر میں حیرت اور تعریف کو متاثر کرتی رہتی ہیں۔ یہ عمارتیں اکثر متعدد مقاصد کی تکمیل کرتی تھیں، عبادت، تعلیم، تجارت، اور سماجی اجتماعات کے مراکز کے طور پر کام کرتی تھیں، جو اسلامی معاشرے کی جامع نوعیت کو ظاہر کرتی ہیں۔ ان کی تعمیر میں استعمال ہونے والی ہنر مند کاریگری اور جدید انجینئرنگ کی تکنیکیں اس وقت کے جدید علم کا ثبوت ہیں۔ پیچیدہ تفصیلات، وشد رنگوں، اور قدرتی عناصر پر زور نے ایسے ماحول پیدا کیے جو عملی اور روحانی طور پر بلند کرنے والے تھے۔ یہ بھرپور تعمیراتی ورثہ اسلامی تہذیبوں کے فنکارانہ اور سائنسی کارناموں کے بارے میں انمول بصیرت پیش کرتا ہے، جو آج بھی عصری معماروں اور فنکاروں کو متاثر کرتا ہے۔ ان تاریخی مقامات کا تحفظ اور مطالعہ عالمی ورثے میں اسلام کے گہرے ثقافتی اور روحانی شراکت کو سمجھنے کے لیے بہت اہم ہے۔',
             'category_slug' => 'history-islam',
             'is_breaking' => 0,
-            'image' => 'https://via.placeholder.com/600x400/20c997/ffffff?text=Islamic+Architecture',
+            'image' => 'new.jpg',
             'is_sponsored' => 0,
             'published_at' => date('Y-m-d H:i:s', strtotime('-4 days'))
         ],
@@ -267,7 +267,7 @@ if ($admin_check['count'] == 0) {
             'content_ur' => 'رمضان، اسلامی کیلنڈر کا نواں مہینہ، دنیا بھر کے مسلمانوں کی طرف سے روزے، دعا، غور و فکر، اور برادری کے مہینے کے طور پر منایا جاتا ہے۔ یہ نبی اکرم صلی اللہ علیہ وسلم پر قرآن کے پہلے نزول کی یادگار ہے۔ اس مہینے کے دوران، مسلمان فجر سے غروب آفتاب تک کھانے پینے سے پرہیز کرتے ہیں، جسے صوم کہتے ہیں۔ محض پرہیز کے علاوہ، رمضان روحانی بیداری، خود انظباط، اور اللہ کے ساتھ لگاؤ کو بڑھاتا ہے۔ یہ قرآن کی تلاوت، اضافی نمازوں (تراویح)، اور خیراتی کاموں (صدقہ اور زکوٰۃ) میں اضافے کا وقت ہے۔ سخاوت اور ہمدردی کا جذبہ پھلتا پھولتا ہے، مسلمان اکثر اپنی افطاری ایک ساتھ کرتے ہیں اور اجتماعی عبادت میں مشغول ہوتے ہیں۔ یہ اجتماعی پہلو خاندانوں اور وسیع تر مسلم برادری کے اندر تعلقات کو مضبوط کرتا ہے، جس سے اتحاد اور مشترکہ مقصد کا احساس پیدا ہوتا ہے۔ رمضان خود احتسابی کا بھی ایک دور ہے، جو افراد کو اپنی زندگیوں کا جائزہ لینے، معافی مانگنے، اور اسلامی تعلیمات کے ساتھ اپنے عزم کی تجدید کرنے کی اجازت دیتا ہے۔ رمضان کی آخری دس راتیں خاص طور پر اہم ہیں، کیونکہ ان میں سے ایک لیلۃ القدر (طاقت کی رات) ہے، جس کے بارے میں خیال کیا جاتا ہے کہ اس رات قرآن کی پہلی آیات نازل ہوئیں۔ رمضان کا اختتام عید الفطر کی پرمسرت تقریب میں ہوتا ہے، جو شکرگزاری اور یکجہتی کا دن ہے۔ رمضان کی تعلیمات اور طریقوں کا مقصد ایسی خوبیوں کو فروغ دینا ہے جو مقدس مہینے سے آگے تک جاری رہیں، جو پورے سال شعور، ہمدردی، اور لگن کی مسلسل حالت کو فروغ دیتی ہیں۔ یہ ایک سالانہ روحانی تربیتی میدان کے طور پر کام کرتا ہے، جو مومنوں کو اپنی روحوں کو پاک کرنے اور اپنے خالق کے قریب ہونے کے قابل بناتا ہے۔ رمضان کے دوران اجتماعی کھانوں، مشترکہ نمازوں، اور اجتماعی خیراتی کوششوں میں یکجہتی اور باہمی تعاون کی بنیادی اسلامی اقدار شامل ہیں، جو اسے لاکھوں لوگوں کے لیے ایک حقیقی تبدیلی کا تجربہ بناتی ہے۔',
             'category_slug' => 'spirituality-ethics',
             'is_breaking' => 0,
-            'image' => 'https://via.placeholder.com/600x400/dc3545/ffffff?text=Ramadan',
+            'image' => 'new.jpg',
             'is_sponsored' => 0,
             'published_at' => date('Y-m-d H:i:s', strtotime('-5 days'))
         ]
@@ -2395,18 +2395,22 @@ if ($view === 'article' && $article_id) {
                         $category = $lang === 'ur' ? ($article['name_ur'] ?? 'نامعلوم') : ($article['name_en'] ?? 'Unknown');
                         echo '<div class="col-md-6 mb-4">';
                         echo '<div class="card h-100 shadow-sm">';
+                        $article_link = '?view=article&id=' . $article['id'] . '&lang=' . $lang;
+                        echo '<a href="' . $article_link . '" class="text-decoration-none">';
                         if ($article['image']) {
                             echo '<img src="' . htmlspecialchars($article['image']) . '" class="card-img-top" alt="' . htmlspecialchars($title) . '">';
                         } else {
-                            echo '<img src="https://via.placeholder.com/600x400/ccc/white?text=No+Image" class="card-img-top" alt="No image available">';
+                            echo '<img src="new.jpg" class="card-img-top" alt="No image available">';
                         }
+                        echo '</a>';
                         echo '<div class="card-body d-flex flex-column">';
                         echo '<span class="category-badge">' . htmlspecialchars($category) . '</span>';
+                        echo '<a href="' . $article_link . '" class="text-decoration-none text-dark">';
                         echo '<h5 class="card-title mt-2">' . htmlspecialchars($title);
                         if ($article['is_sponsored']) {
                             echo ' <span class="sponsored-badge">' . ($lang === 'ur' ? 'سپانسر شدہ' : 'Sponsored') . '</span>';
                         }
-                        echo '</h5>';
+                        echo '</h5></a>';
                         echo '<p class="card-text">' . htmlspecialchars(substr(strip_tags($content), 0, 150)) . '...</p>';
                         echo '<div class="meta-info mt-auto">';
                         echo '<i class="fas fa-user me-1"></i><a href="?view=author&id=' . ($article['author_id'] ?? '') . '&lang=' . $lang . '">' . htmlspecialchars($article['username'] ?? ($lang === 'ur' ? 'نامعلوم مصنف' : 'Unknown Author')) . '</a> • ';
@@ -2525,7 +2529,7 @@ if ($view === 'article' && $article_id) {
                             if ($r_article['image']) {
                                 echo '<img src="' . htmlspecialchars($r_article['image']) . '" class="card-img-top" style="height: 120px; object-fit: cover;" alt="' . htmlspecialchars($r_title) . '">';
                             } else {
-                                echo '<img src="https://via.placeholder.com/600x400/ccc/white?text=No+Image" class="card-img-top" style="height: 120px; object-fit: cover;" alt="No image available">';
+                                echo '<img src="new.jpg" class="card-img-top" style="height: 120px; object-fit: cover;" alt="No image available">';
                             }
                             echo '<div class="card-body p-2">';
                             echo '<h6 class="card-title mb-1"><a href="?view=article&id=' . $r_article['id'] . '&lang=' . $lang . '" class="text-decoration-none text-dark">' . htmlspecialchars(mb_strimwidth($r_title, 0, 40, "...")) . '</a></h6>';
@@ -2642,18 +2646,22 @@ if ($view === 'article' && $article_id) {
                         $category_display_name = $lang === 'ur' ? ($article['name_ur'] ?? 'نامعلوم') : ($article['name_en'] ?? 'Unknown');
                         echo '<div class="col-md-6 mb-4">';
                         echo '<div class="card h-100 shadow-sm">';
+                        $article_link = '?view=article&id=' . $article['id'] . '&lang=' . $lang;
+                        echo '<a href="' . $article_link . '" class="text-decoration-none">';
                         if ($article['image']) {
                             echo '<img src="' . htmlspecialchars($article['image']) . '" class="card-img-top" alt="' . htmlspecialchars($title) . '">';
                         } else {
-                            echo '<img src="https://via.placeholder.com/600x400/ccc/white?text=No+Image" class="card-img-top" alt="No image available">';
+                            echo '<img src="new.jpg" class="card-img-top" alt="No image available">';
                         }
+                        echo '</a>';
                         echo '<div class="card-body d-flex flex-column">';
                         echo '<span class="category-badge">' . htmlspecialchars($category_display_name) . '</span>';
+                        echo '<a href="' . $article_link . '" class="text-decoration-none text-dark">';
                         echo '<h5 class="card-title mt-2">' . htmlspecialchars($title);
                         if ($article['is_sponsored']) {
                             echo ' <span class="sponsored-badge">' . ($lang === 'ur' ? 'سپانسر شدہ' : 'Sponsored') . '</span>';
                         }
-                        echo '</h5>';
+                        echo '</h5></a>';
                         echo '<p class="card-text">' . htmlspecialchars(substr(strip_tags($content), 0, 150)) . '...</p>';
                         echo '<div class="meta-info mt-auto">';
                         echo '<i class="fas fa-user me-1"></i><a href="?view=author&id=' . ($article['author_id'] ?? '') . '&lang=' . $lang . '">' . htmlspecialchars($article['username'] ?? ($lang === 'ur' ? 'نامعلوم مصنف' : 'Unknown Author')) . '</a> • ';
@@ -2821,18 +2829,22 @@ if ($view === 'article' && $article_id) {
                         $category = $lang === 'ur' ? ($article['name_ur'] ?? 'نامعلوم') : ($article['name_en'] ?? 'Unknown');
                         echo '<div class="col-md-6 mb-4">';
                         echo '<div class="card h-100 shadow-sm">';
+                        $article_link = '?view=article&id=' . $article['id'] . '&lang=' . $lang;
+                        echo '<a href="' . $article_link . '" class="text-decoration-none">';
                         if ($article['image']) {
                             echo '<img src="' . htmlspecialchars($article['image']) . '" class="card-img-top" alt="' . htmlspecialchars($title) . '">';
                         } else {
-                            echo '<img src="https://via.placeholder.com/600x400/ccc/white?text=No+Image" class="card-img-top" alt="No image available">';
+                            echo '<img src="new.jpg" class="card-img-top" alt="No image available">';
                         }
+                        echo '</a>';
                         echo '<div class="card-body d-flex flex-column">';
                         echo '<span class="category-badge">' . htmlspecialchars($category) . '</span>';
+                        echo '<a href="' . $article_link . '" class="text-decoration-none text-dark">';
                         echo '<h5 class="card-title mt-2">' . htmlspecialchars($title);
                         if ($article['is_sponsored']) {
                             echo ' <span class="sponsored-badge">' . ($lang === 'ur' ? 'سپانسر شدہ' : 'Sponsored') . '</span>';
                         }
-                        echo '</h5>';
+                        echo '</h5></a>';
                         echo '<p class="card-text">' . htmlspecialchars(substr(strip_tags($content), 0, 150)) . '...</p>';
                         echo '<div class="meta-info mt-auto">';
                         echo '<i class="fas fa-user me-1"></i><a href="?view=author&id=' . ($article['author_id'] ?? '') . '&lang=' . $lang . '">' . htmlspecialchars($article['username'] ?? ($lang === 'ur' ? 'نامعلوم مصنف' : 'Unknown Author')) . '</a> • ';
@@ -3692,7 +3704,7 @@ if ($view === 'article' && $article_id) {
                     if ($user['avatar']) {
                         echo '<img src="' . htmlspecialchars($user['avatar']) . '" class="profile-avatar" alt="' . htmlspecialchars($user['username']) . ' Avatar">';
                     } else {
-                        echo '<img src="https://via.placeholder.com/120x120/ccc/white?text=Avatar" class="profile-avatar" alt="Default Avatar">';
+                        echo '<img src="new.jpg" class="profile-avatar" alt="Default Avatar">';
                     }
                     echo '<h5><i class="fas fa-user-circle me-2"></i>' . htmlspecialchars($user['username']) . '</h5>';
                     echo '<p><strong>' . ($lang === 'ur' ? 'ای میل:' : 'Email:') . '</strong> ' . htmlspecialchars($user['email']) . '</p>';
@@ -3792,7 +3804,7 @@ if ($view === 'article' && $article_id) {
                             if ($author['avatar']) {
                                 echo '<img src="' . htmlspecialchars($author['avatar']) . '" alt="Avatar" style="width: 30px; height: 30px; border-radius: 50%; object-fit: cover;" class="me-2">';
                             } else {
-                                echo '<img src="https://via.placeholder.com/30x30/ccc/white?text=A" alt="Avatar" style="width: 30px; height: 30px; border-radius: 50%; object-fit: cover;" class="me-2">';
+                                echo '<img src="new.jpg" alt="Avatar" style="width: 30px; height: 30px; border-radius: 50%; object-fit: cover;" class="me-2">';
                             }
                             echo htmlspecialchars($author['username']);
                             echo '</a>';
@@ -3863,18 +3875,22 @@ if ($view === 'article' && $article_id) {
                         $category = $lang === 'ur' ? ($article['name_ur'] ?? 'نامعلوم') : ($article['name_en'] ?? 'Unknown');
                         echo '<div class="col-md-6 mb-4">';
                         echo '<div class="card h-100 shadow-sm">';
+                        $article_link = '?view=article&id=' . $article['id'] . '&lang=' . $lang;
+                        echo '<a href="' . $article_link . '" class="text-decoration-none">';
                         if ($article['image']) {
                             echo '<img src="' . htmlspecialchars($article['image']) . '" class="card-img-top" alt="' . htmlspecialchars($title) . '">';
                         } else {
-                            echo '<img src="https://via.placeholder.com/600x400/ccc/white?text=No+Image" class="card-img-top" alt="No image available">';
+                            echo '<img src="new.jpg" class="card-img-top" alt="No image available">';
                         }
+                        echo '</a>';
                         echo '<div class="card-body d-flex flex-column">';
                         echo '<span class="category-badge">' . htmlspecialchars($category) . '</span>';
+                        echo '<a href="' . $article_link . '" class="text-decoration-none text-dark">';
                         echo '<h5 class="card-title mt-2">' . htmlspecialchars($title);
                         if ($article['is_sponsored']) {
                             echo ' <span class="sponsored-badge">' . ($lang === 'ur' ? 'سپانسر شدہ' : 'Sponsored') . '</span>';
                         }
-                        echo '</h5>';
+                        echo '</h5></a>';
                         echo '<p class="card-text">' . htmlspecialchars(substr(strip_tags($content), 0, 150)) . '...</p>';
                         echo '<div class="meta-info mt-auto">';
                         echo '<i class="fas fa-user me-1"></i><a href="?view=author&id=' . ($article['author_id'] ?? '') . '&lang=' . $lang . '">' . htmlspecialchars($article['username'] ?? ($lang === 'ur' ? 'نامعلوم مصنف' : 'Unknown Author')) . '</a> • ';
@@ -3939,18 +3955,22 @@ if ($view === 'article' && $article_id) {
                         $category = $lang === 'ur' ? ($article['name_ur'] ?? 'نامعلوم') : ($article['name_en'] ?? 'Unknown');
                         echo '<div class="col-md-6 mb-4">';
                         echo '<div class="card h-100 shadow-sm">';
+                        $article_link = '?view=article&id=' . $article['id'] . '&lang=' . $lang;
+                        echo '<a href="' . $article_link . '" class="text-decoration-none">';
                         if ($article['image']) {
                             echo '<img src="' . htmlspecialchars($article['image']) . '" class="card-img-top" alt="' . htmlspecialchars($title) . '">';
                         } else {
-                            echo '<img src="https://via.placeholder.com/600x400/ccc/white?text=No+Image" class="card-img-top" alt="No image available">';
+                            echo '<img src="new.jpg" class="card-img-top" alt="No image available">';
                         }
+                        echo '</a>';
                         echo '<div class="card-body d-flex flex-column">';
                         echo '<span class="category-badge">' . htmlspecialchars($category) . '</span>';
+                        echo '<a href="' . $article_link . '" class="text-decoration-none text-dark">';
                         echo '<h5 class="card-title mt-2">' . htmlspecialchars($title);
                         if ($article['is_sponsored']) {
                             echo ' <span class="sponsored-badge">' . ($lang === 'ur' ? 'سپانسر شدہ' : 'Sponsored') . '</span>';
                         }
-                        echo '</h5>';
+                        echo '</h5></a>';
                         echo '<p class="card-text">' . htmlspecialchars(substr(strip_tags($content), 0, 150)) . '...</p>';
                         echo '<div class="meta-info mt-auto">';
                         echo '<i class="fas fa-user me-1"></i><a href="?view=author&id=' . ($article['author_id'] ?? '') . '&lang=' . $lang . '">' . htmlspecialchars($article['username'] ?? ($lang === 'ur' ? 'نامعلوم مصنف' : 'Unknown Author')) . '</a> • ';
@@ -4244,7 +4264,7 @@ if ($view === 'article' && $article_id) {
                     if ($author['avatar']) {
                         echo '<img src="' . htmlspecialchars($author['avatar']) . '" class="profile-avatar" alt="' . htmlspecialchars($author['username']) . ' Avatar">';
                     } else {
-                        echo '<img src="https://via.placeholder.com/120x120/ccc/white?text=Avatar" class="profile-avatar" alt="Default Avatar">';
+                        echo '<img src="new.jpg" class="profile-avatar" alt="Default Avatar">';
                     }
                     echo '<h5>' . htmlspecialchars($author['username']) . ' <small class="text-muted">(' . ucfirst($author['role']) . ')</small></h5>';
                     echo '<p class="text-muted">' . htmlspecialchars($author['email']) . '</p>';
@@ -4300,18 +4320,22 @@ if ($view === 'article' && $article_id) {
                         $category = $lang === 'ur' ? ($article['name_ur'] ?? 'نامعلوم') : ($article['name_en'] ?? 'Unknown');
                         echo '<div class="col-md-6 mb-4">';
                         echo '<div class="card h-100 shadow-sm">';
+                        $article_link = '?view=article&id=' . $article['id'] . '&lang=' . $lang;
+                        echo '<a href="' . $article_link . '" class="text-decoration-none">';
                         if ($article['image']) {
                             echo '<img src="' . htmlspecialchars($article['image']) . '" class="card-img-top" alt="' . htmlspecialchars($title) . '">';
                         } else {
-                            echo '<img src="https://via.placeholder.com/600x400/ccc/white?text=No+Image" class="card-img-top" alt="No image available">';
+                            echo '<img src="new.jpg" class="card-img-top" alt="No image available">';
                         }
+                        echo '</a>';
                         echo '<div class="card-body d-flex flex-column">';
                         echo '<span class="category-badge">' . htmlspecialchars($category) . '</span>';
+                        echo '<a href="' . $article_link . '" class="text-decoration-none text-dark">';
                         echo '<h5 class="card-title mt-2">' . htmlspecialchars($title);
                         if ($article['is_sponsored']) {
                             echo ' <span class="sponsored-badge">' . ($lang === 'ur' ? 'سپانسر شدہ' : 'Sponsored') . '</span>';
                         }
-                        echo '</h5>';
+                        echo '</h5></a>';
                         echo '<p class="card-text">' . htmlspecialchars(substr(strip_tags($content), 0, 150)) . '...</p>';
                         echo '<div class="meta-info mt-auto">';
                         echo '<i class="fas fa-user me-1"></i><a href="?view=author&id=' . ($article['author_id'] ?? '') . '&lang=' . $lang . '">' . htmlspecialchars($article['username'] ?? ($lang === 'ur' ? 'نامعلوم مصنف' : 'Unknown Author')) . '</a> • ';
@@ -4714,7 +4738,7 @@ if ($view === 'article' && $article_id) {
                         <input type="hidden" name="current_avatar" id="currentAvatar">
                         <div class="mb-3 text-center">
                             <label for="profileAvatar" class="form-label"><?= $lang === 'ur' ? 'اواتار اپ ڈیٹ کریں' : 'Update Avatar' ?></label><br>
-                            <img id="avatarPreview" src="https://via.placeholder.com/120x120/ccc/white?text=Avatar" class="profile-avatar mb-2" alt="Avatar Preview">
+                            <img id="avatarPreview" src="new.jpg" class="profile-avatar mb-2" alt="Avatar Preview">
                             <input type="file" name="avatar" id="profileAvatar" class="form-control" accept="image/*">
                             <div class="form-check mt-2">
                                 <input class="form-check-input" type="checkbox" id="removeAvatarCheckbox" name="remove_avatar" value="1">
@@ -5494,7 +5518,7 @@ if ($view === 'article' && $article_id) {
                 editProfileModal.querySelector('#socialFacebook').value = socialLinks.facebook || '';
                 editProfileModal.querySelector('#socialTwitter').value = socialLinks.twitter || '';
                 editProfileModal.querySelector('#socialLinkedin').value = socialLinks.linkedin || '';
-                avatarPreview.src = avatar && avatar !== 'null' ? avatar : 'https://via.placeholder.com/120x120/ccc/white?text=Avatar';
+                avatarPreview.src = avatar && avatar !== 'null' ? avatar : 'new.jpg';
                 currentAvatarInput.value = avatar;
                 removeAvatarCheckbox.checked = false;
             });
@@ -5507,7 +5531,7 @@ if ($view === 'article' && $article_id) {
                     };
                     reader.readAsDataURL(file);
                 } else {
-                    editProfileModal.querySelector('#avatarPreview').src = editProfileModal.querySelector('#currentAvatar').value || 'https://via.placeholder.com/120x120/ccc/white?text=Avatar';
+                    editProfileModal.querySelector('#avatarPreview').src = editProfileModal.querySelector('#currentAvatar').value || 'new.jpg';
                 }
             });
         }
