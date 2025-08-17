@@ -5,7 +5,7 @@ ini_set("display_errors", 1);
 $db_host = 'localhost';
 $db_user = 'root';
 $db_pass = 'root';
-$db_name = 'islamic_newspaper_db';
+$db_name = 'newspaper_db';
 $conn = new mysqli($db_host, $db_user, $db_pass, $db_name);
 if ($conn->connect_error) {
     $conn = new mysqli($db_host, $db_user, $db_pass);
@@ -196,81 +196,66 @@ foreach ($tables as $table) {
 $admin_check = $conn->query("SELECT COUNT(*) as count FROM users WHERE role = 'admin'")->fetch_assoc();
 if ($admin_check['count'] == 0) {
     $admin_password = password_hash('admin123', PASSWORD_DEFAULT);
-    $conn->query("INSERT INTO users (username, email, password, role, bio_en, bio_ur) VALUES ('admin', 'admin@islamictimes.pk', '$admin_password', 'admin', 'Administrator of Islamic Times. Oversees all operations related to Islamic scholarship and news.', 'اسلامک ٹائمز کے منتظم۔ اسلامی علوم اور خبروں سے متعلق تمام کارروائیوں کی نگرانی کرتے ہیں۔')");
+    $conn->query("INSERT INTO users (username, email, password, role, bio_en, bio_ur) VALUES ('admin', 'admin@newspaper.pk', '$admin_password', 'admin', 'Administrator of Pakistan Times. Oversees all operations.', 'پاکستان ٹائمز کے منتظم۔ تمام کارروائیوں کی نگرانی کرتے ہیں۔')");
     $categories = [
-        ['Islamic Studies', 'اسلامی علوم', 'islamic-studies'],
-        ['Current Affairs (Islamic Perspective)', 'حالیہ مسائل (اسلامی نقطہ نظر)', 'current-affairs-islamic'],
-        ['Fiqh & Sharia', 'فقہ و شریعت', 'fiqh-sharia'],
-        ['History of Islam', 'تاریخ اسلام', 'history-islam'],
-        ['Spirituality & Ethics', 'روحانیت و اخلاق', 'spirituality-ethics'],
-        ['Muslim World News', 'عالم اسلام کی خبریں', 'muslim-world-news'],
-        ['Opinion (Islamic)', 'رائے (اسلامی)', 'opinion-islamic']
+        ['National', 'قومی', 'national'],
+        ['International', 'بین الاقوامی', 'international'],
+        ['Sports', 'کھیل', 'sports'],
+        ['Technology', 'ٹکنالوجی', 'technology'],
+        ['Business', 'کاروبار', 'business'],
+        ['Entertainment', 'تفریح', 'entertainment'],
+        ['Opinion', 'رائے', 'opinion']
     ];
     foreach ($categories as $cat) {
         $stmt = $conn->prepare("INSERT INTO categories (name_en, name_ur, slug) VALUES (?, ?, ?)");
-
-        $name_en = $cat[0];
-        $name_ur = $cat[1];
-        $slug = $cat[2];
-        $stmt->bind_param("sss", $name_en, $name_ur, $slug);
+        $stmt->bind_param("sss", $cat[0], $cat[1], $cat[2]);
         $stmt->execute();
     }
     $admin_user_id = $conn->query("SELECT id FROM users WHERE username = 'admin'")->fetch_assoc()['id'];
     $sample_articles = [
         [
-            'title_en' => 'The Importance of Seeking Knowledge in Islam',
-            'title_ur' => 'اسلام میں علم حاصل کرنے کی اہمیت',
-            'content_en' => 'In Islam, seeking knowledge is not merely encouraged but is considered a sacred duty for every Muslim. The Quran and Hadith repeatedly emphasize the virtues of knowledge, referring to it as a means to understand Allah\'s creation, His commands, and to live a purposeful life. From the earliest days of Islam, great emphasis was placed on education and intellectual pursuits, leading to significant advancements in various fields of science, medicine, and philosophy. This article explores the foundational texts and historical context that highlight this profound emphasis on learning and its impact on the development of Islamic civilization. It discusses how knowledge serves as a light, dispelling ignorance and guiding believers towards truth and righteousness. The pursuit of knowledge encompasses both religious and worldly sciences, as both are seen as pathways to understanding and appreciating the divine wisdom embedded in the universe. Learning is a continuous journey from cradle to grave, fostering intellectual growth and moral development within the individual and the community. By engaging in scholarly endeavors, Muslims can contribute to the betterment of humanity, fulfilling their role as stewards of the Earth and spreading the message of peace and justice. This emphasis on knowledge has historically propelled Muslim societies to be pioneers in numerous scientific and philosophical fields, contributing immensely to global civilization. Libraries and learning centers flourished, attracting scholars from all corners of the world, eager to contribute to and benefit from the rich intellectual environment. This intellectual legacy continues to inspire generations, underscoring that the pursuit of knowledge remains a vital component of the Islamic way of life. It reminds us that wisdom is the lost property of the believer, and wherever he finds it, he is most deserving of it. Thus, education is not just a personal endeavor but a communal responsibility, ensuring that the light of knowledge continues to illuminate paths for future generations and contribute to global prosperity.',
-            'content_ur' => 'اسلام میں علم کا حصول صرف حوصلہ افزائی نہیں بلکہ ہر مسلمان کے لیے ایک مقدس فریضہ سمجھا جاتا ہے۔ قرآن و حدیث میں بار بار علم کی فضیلت پر زور دیا گیا ہے، اسے اللہ کی تخلیق، اس کے احکامات کو سمجھنے اور ایک بامقصد زندگی گزارنے کا ذریعہ قرار دیا گیا ہے۔ اسلام کے ابتدائی ایام سے ہی تعلیم اور فکری سرگرمیوں پر بہت زور دیا گیا، جس سے سائنس، طب اور فلسفہ کے مختلف شعبوں میں اہم ترقی ہوئی، یہ مضمون ان بنیادی نصوص اور تاریخی سیاق و سباق کو تلاش کرتا ہے جو علم پر اس گہرے زور اور اسلامی تہذیب کی ترقی پر اس کے اثرات کو نمایاں کرتے ہیں۔ یہ بحث کرتا ہے کہ علم ایک روشنی کے طور پر کس طرح کام کرتا ہے، جہالت کو دور کرتا ہے اور مومنوں کو سچائی اور راستبازی کی طرف رہنمائی کرتا ہے۔ علم کا حصول مذہبی اور دنیاوی دونوں علوم پر محیط ہے، کیونکہ دونوں کو کائنات میں موجود الہی حکمت کو سمجھنے اور سراہنے کے راستے کے طور پر دیکھا جاتا ہے۔ علم کا سفر گہوارے سے لحد تک جاری رہتا ہے، جو فرد اور معاشرے میں فکری نشوونما اور اخلاقی ترقی کو فروغ دیتا ہے۔ علمی کوششوں میں مشغول ہو کر، مسلمان انسانیت کی بہتری میں حصہ ڈال سکتے ہیں، زمین کے رکھوالے کے طور پر اپنا کردار ادا کر سکتے ہیں اور امن و انصاف کا پیغام پھیلا سکتے ہیں۔ علم پر اس زور نے تاریخی طور پر مسلم معاشروں کو متعدد سائنسی اور فلسفیانہ شعبوں میں پیشرو بننے پر مجبور کیا، جس سے عالمی تہذیب میں بے پناہ حصہ ڈالا۔ کتب خانے اور تعلیمی مراکز پھلے پھولے، دنیا کے کونے کونے سے علماء کو اپنی طرف متوجہ کیا، جو بھرپور فکری ماحول میں حصہ لینے اور اس سے مستفید ہونے کے لیے بے تاب تھے۔ یہ فکری وراثت نسلوں کو متاثر کرتی رہتی ہے، یہ اس بات پر زور دیتی ہے کہ علم کا حصول اسلامی طرز زندگی کا ایک اہم جزو ہے۔ یہ ہمیں یاد دلاتا ہے کہ حکمت مومن کی گمشدہ میراث ہے، اور جہاں کہیں اسے ملے وہ اس کا سب سے زیادہ حقدار ہے۔ اس طرح، تعلیم صرف ایک ذاتی کوشش نہیں بلکہ ایک اجتماعی ذمہ داری ہے، جو اس بات کو یقینی بناتی ہے کہ علم کی روشنی آنے والی نسلوں کے لیے راستوں کو روشن کرتی رہے اور عالمی خوشحالی میں حصہ ڈالے۔',
-            'category_slug' => 'islamic-studies',
+            'title_en' => 'Pakistan Economy Shows Growth in Q4 2024',
+            'title_ur' => 'پاکستان کی معیشت 2024 کی چوتھی سہ ماہی میں بہتری کا مظاہرہ',
+            'content_en' => 'Pakistan\'s economy has shown remarkable growth in the fourth quarter of 2024, with GDP increasing by 3.2%. The growth has been primarily driven by the industrial and services sectors. Experts predict continued positive trends in 2025 as the country implements structural reforms and improves its export capacity. The government has emphasized on fostering a business-friendly environment and attracting foreign investments.',
+            'content_ur' => 'پاکستان کی معیشت نے 2024 کی چوتھی سہ ماہی میں قابل ذکر نمو دکھائی ہے، جی ڈی پی میں 3.2 فیصد اضافہ ہوا ہے۔ یہ نمو بنیادی طور پر صنعتی اور خدماتی شعبوں سے آئی ہے۔ ماہرین نے 2025 میں مثبت رجحان جاری رہنے کی پیش گوئی کی ہے کیونکہ ملک ساختی اصلاحات نافذ کر رہا ہے اور اپنی برآمدی صلاحیت بہتر بنا رہا ہے۔ حکومت نے کاروباری دوستانہ ماحول کو فروغ دینے اور غیر ملکی سرمایہ کاری کو راغب کرنے پر زور دیا ہے۔',
+            'category_slug' => 'business',
             'is_breaking' => 1,
-            'image' => 'https://via.placeholder.com/600x400/28a745/ffffff?text=Islamic+Knowledge',
+            'image' => 'https://via.placeholder.com/600x400/1a365d/ffffff?text=Economy+Growth',
             'is_sponsored' => 0,
             'published_at' => date('Y-m-d H:i:s', strtotime('-1 day'))
         ],
         [
-            'title_en' => 'Challenges and Opportunities for Muslim Youth in the West',
-            'title_ur' => 'مغرب میں مسلم نوجوانوں کے لیے چیلنجز اور مواقع',
-            'content_en' => 'Muslim youth in Western societies face a unique set of challenges and opportunities. Navigating their religious identity within a secular framework, dealing with Islamophobia, and maintaining cultural heritage while integrating into broader society are common struggles. However, these environments also offer unparalleled opportunities for education, professional growth, and active participation in civil society. Many young Muslims are leveraging these opportunities to bridge cultural divides, contribute positively to their communities, and present an authentic image of Islam. This article explores the various dimensions of their experiences, focusing on strategies for resilience, advocacy, and community building. It highlights successful initiatives led by Muslim youth in education, entrepreneurship, and social activism, demonstrating their dynamic role in shaping both their own future and the broader societal landscape. The role of strong community support, religious education, and interfaith dialogue is crucial in empowering these young individuals. Addressing issues like identity crisis, mental health, and discrimination requires a multi-faceted approach involving families, religious institutions, and educational bodies. Conversely, the opportunities presented by Western societies, such as freedom of expression and access to diverse educational resources, can foster critical thinking and intellectual development among Muslim youth. Their active engagement in academia, arts, and politics enriches the multicultural fabric of these nations. By fostering a strong sense of self and community, these young Muslims can become powerful agents of positive change, contributing to a more inclusive and understanding world. Their unique position allows them to act as cultural ambassadors, dispelling misconceptions and building bridges of understanding between different communities. This dual perspective enables them to draw strength from their faith and heritage while embracing the advancements and freedoms offered by modern societies. The narrative of Muslim youth in the West is one of resilience, innovation, and a powerful commitment to both their faith and their societies.',
-            'content_ur' => 'مغربی معاشروں میں مسلم نوجوانوں کو منفرد چیلنجز اور مواقع کا سامنا ہے۔ سیکولر ڈھانچے میں اپنی مذہبی شناخت کو قائم رکھنا، اسلامو فوبیا سے نمٹنا، اور وسیع تر معاشرے میں ضم ہوتے ہوئے ثقافتی ورثے کو برقرار رکھنا عام جدوجہد ہیں۔ تاہم، یہ ماحول تعلیم، پیشہ ورانہ ترقی، اور سول سوسائٹی میں فعال شرکت کے لیے بے مثال مواقع بھی فراہم کرتے ہیں۔ بہت سے نوجوان مسلمان ان مواقع کو ثقافتی خلیجوں کو پاٹنے، اپنی برادریوں میں مثبت حصہ ڈالنے، اور اسلام کی ایک مستند تصویر پیش کرنے کے لیے استعمال کر رہے ہیں۔ یہ مضمون ان کے تجربات کے مختلف پہلوؤں کو تلاش کرتا ہے، جس میں لچک، وکالت، اور کمیونٹی کی تعمیر کی حکمت عملیوں پر توجہ مرکوز کی گئی ہے۔ یہ مسلم نوجوانوں کی قیادت میں تعلیم، کاروبار، اور سماجی سرگرمیوں میں کامیاب اقدامات کو نمایاں کرتا ہے، جو ان کے اپنے مستقبل اور وسیع تر سماجی منظر نامے کو تشکیل دینے میں ان کے متحرک کردار کو ظاہر کرتا ہے۔ مضبوط کمیونٹی سپورٹ، مذہبی تعلیم، اور بین المذاہب مکالمے کا کردار ان نوجوانوں کو بااختیار بنانے میں اہم ہے۔ شناخت کے بحران، دماغی صحت، اور امتیازی سلوک جیسے مسائل سے نمٹنے کے لیے خاندانوں، مذہبی اداروں، اور تعلیمی اداروں کو شامل کرتے ہوئے ایک کثیر جہتی نقطہ نظر کی ضرورت ہے۔ اس کے برعکس، مغربی معاشروں کی طرف سے پیش کردہ مواقع، جیسے اظہار رائے کی آزادی اور متنوع تعلیمی وسائل تک رسائی، مسلم نوجوانوں میں تنقیدی سوچ اور فکری ترقی کو فروغ دے سکتی ہے۔ ان کی تعلیمی، فنون لطیفہ، اور سیاسی شعبوں میں فعال شرکت ان اقوام کے کثیر الثقافتی ڈھانچے کو تقویت بخشتی ہے۔ خود اور کمیونٹی کے ایک مضبوط احساس کو فروغ دے کر، یہ نوجوان مسلمان مثبت تبدیلی کے طاقتور ایجنٹ بن سکتے ہیں، جو ایک زیادہ جامع اور باہم سمجھوتہ کرنے والی دنیا میں حصہ ڈال سکتے ہیں۔ ان کی منفرد پوزیشن انہیں اپنے ایمان اور ورثے سے طاقت حاصل کرنے کی اجازت دیتی ہے جبکہ جدید معاشروں کی پیش کردہ ترقیوں اور آزادیوں کو قبول کرتے ہیں۔ مغرب میں مسلم نوجوانوں کا بیانیہ لچک، جدت، اور اپنے ایمان اور اپنے معاشروں دونوں کے لیے ایک مضبوط عزم کا ہے۔',
-            'category_slug' => 'muslim-world-news',
+            'title_en' => 'Cricket World Cup Preparations Begin',
+            'title_ur' => 'کرکٹ ورلڈ کپ کی تیاریاں شروع',
+            'content_en' => 'The Pakistan cricket team has begun intensive preparations for the upcoming Cricket World Cup. The team management has announced a 15-member squad with a perfect blend of experienced and young players. Training camps are being organized across major cities, focusing on fitness and strategic gameplay. Fans are eagerly awaiting the tournament.',
+            'content_ur' => 'پاکستان کرکٹ ٹیم نے آئندہ کرکٹ ورلڈ کپ کے لیے سخت تیاریاں شروع کر دی ہیں۔ ٹیم منیجمنٹ نے تجربہ کار اور نوجوان کھلاڑیوں کے بہترین امتزاج کے ساتھ 15 رکنی اسکواڈ کا اعلان کیا ہے۔ بڑے شہروں میں ٹریننگ کیمپس کا انعقاد کیا جا رہا ہے، جس میں فٹنس اور حکمت عملی پر توجہ دی جا رہی ہے۔ شائقین ٹورنامنٹ کا بے صبری سے انتظار کر رہے ہیں۔',
+            'category_slug' => 'sports',
             'is_breaking' => 0,
-            'image' => 'https://via.placeholder.com/600x400/007bff/ffffff?text=Muslim+Youth',
+            'image' => 'https://via.placeholder.com/600x400/e53e3e/ffffff?text=Cricket+Preparations',
             'is_sponsored' => 0,
             'published_at' => date('Y-m-d H:i:s', strtotime('-2 days'))
         ],
         [
-            'title_en' => 'Understanding Islamic Finance: Principles and Practices',
-            'title_ur' => 'اسلامی مالیات کو سمجھنا: اصول اور طریقے',
-            'content_en' => 'Islamic finance is a rapidly growing sector that operates on principles derived from Islamic law (Sharia). Unlike conventional finance, it prohibits interest (riba), excessive uncertainty (gharar), and gambling (maysir). Instead, it promotes risk-sharing, ethical investments, and tangible asset-backed transactions. Key instruments include Mudarabah (profit-sharing), Musharakah (joint venture), Murabaha (cost-plus financing), and Ijarah (leasing). This article provides an overview of these fundamental principles and explores how Islamic financial institutions operate globally. It delves into the ethical dimensions of Islamic finance, emphasizing social justice, equitable distribution of wealth, and avoidance of exploitative practices. The growth of Islamic banking, sukuk (Islamic bonds), and Takaful (Islamic insurance) demonstrates the increasing demand for Sharia-compliant financial products. Challenges include standardization across different jurisdictions and the need for greater innovation in product development. However, the focus on ethical investing and social responsibility makes Islamic finance an attractive alternative for both Muslims and non-Muslims seeking sustainable and values-driven financial solutions. The concept of "Maqasid al-Sharia" (objectives of Islamic law) plays a crucial role in guiding the development of Islamic financial products, ensuring they contribute to the welfare of society. This includes promoting real economic activity, discouraging speculative transactions, and fostering financial inclusion. The integration of technology, particularly FinTech, is also opening new avenues for Islamic finance to reach a wider audience and offer more accessible services. This expansion highlights a commitment to providing ethical financial solutions that align with the moral framework of Islam.',
-            'content_ur' => 'اسلامی مالیات ایک تیزی سے ترقی پذیر شعبہ ہے جو اسلامی قانون (شریعت) سے ماخوذ اصولوں پر کام کرتا ہے۔ روایتی مالیات کے برعکس، یہ سود (ربا)، ضرورت سے زیادہ غیر یقینی (غرر)، اور جوئے (میسر) کو ممنوع قرار دیتا ہے۔ اس کے بجائے، یہ خطرے کی شراکت، اخلاقی سرمایہ کاری، اور ٹھوس اثاثہ جات پر مبنی لین دین کو فروغ دیتا ہے۔ اہم آلات میں مضاربہ (منافع کی شراکت)، مشارکہ (مشترکہ منصوبہ)، مرابحہ (لاگت جمع منافع پر مالیات)، اور اجارہ (لیزنگ) شامل ہیں۔ یہ مضمون ان بنیادی اصولوں کا ایک جائزہ فراہم کرتا ہے اور یہ بھی بتاتا ہے کہ اسلامی مالیاتی ادارے عالمی سطح پر کیسے کام کرتے ہیں۔ یہ اسلامی مالیات کے اخلاقی پہلوؤں کو گہرائی سے بیان کرتا ہے، جس میں سماجی انصاف، دولت کی مساوی تقسیم، اور استحصال پر مبنی طریقوں سے گریز پر زور دیا گیا ہے۔ اسلامی بینکاری، صکوک (اسلامی بانڈز)، اور تکافل (اسلامی بیمہ) کی ترقی شریعت کے مطابق مالیاتی مصنوعات کی بڑھتی ہوئی مانگ کو ظاہر کرتی ہے۔ چیلنجز میں مختلف دائرہ اختیار میں معیاری کاری اور مصنوعات کی ترقی میں زیادہ جدت کی ضرورت شامل ہے۔ تاہم، اخلاقی سرمایہ کاری اور سماجی ذمہ داری پر توجہ اسلامی مالیات کو مسلمانوں اور غیر مسلموں دونوں کے لیے ایک پرکشش متبادل بناتی ہے جو پائیدار اور اقدار پر مبنی مالیاتی حل تلاش کر رہے ہیں۔ "مقاصد الشریعہ" (اسلامی قانون کے مقاصد) کا تصور اسلامی مالیاتی مصنوعات کی ترقی کی رہنمائی میں اہم کردار ادا کرتا ہے، اس بات کو یقینی بناتا ہے کہ وہ معاشرے کی فلاح و بہبود میں حصہ ڈالیں۔ اس میں حقیقی اقتصادی سرگرمیوں کو فروغ دینا، قیاس آرائی پر مبنی لین دین کی حوصلہ شکنی کرنا، اور مالی شمولیت کو فروغ دینا شامل ہے۔ ٹیکنالوجی کا انضمام، خاص طور پر فن ٹیک، اسلامی مالیات کے لیے ایک وسیع سامعین تک پہنچنے اور زیادہ قابل رسائی خدمات پیش کرنے کے نئے راستے بھی کھول رہا ہے۔ یہ توسیع اخلاقی مالیاتی حل فراہم کرنے کے عزم کو نمایاں کرتی ہے جو اسلام کے اخلاقی ڈھانچے کے مطابق ہیں۔',
-            'category_slug' => 'fiqh-sharia',
+            'title_en' => 'Revolutionary AI Technology Launched in Pakistan',
+            'title_ur' => 'پاکستان میں انقلابی AI ٹکنالوجی کا اجراء',
+            'content_en' => 'A groundbreaking artificial intelligence platform has been launched in Pakistan, focusing on local language processing and cultural adaptation. The platform promises to revolutionize how businesses and individuals interact with technology in Pakistan. This initiative is expected to boost the local tech industry and create new opportunities.',
+            'content_ur' => 'پاکستان میں ایک انقلابی مصنوعی ذہانت کا پلیٹفارم متعارف کرایا گیا ہے جو مقامی زبان کی پروسیسنگ اور ثقافتی موافقت پر توجہ مرکوز کرتا ہے۔ یہ پلیٹفارم پاکستان میں کاروبار اور افراد کے ٹکنالوجی کے ساتھ تعامل میں انقلاب لانے کا وعدہ کرتا ہے۔ اس اقدام سے مقامی ٹیک انڈسٹری کو فروغ ملنے اور نئے مواقع پیدا ہونے کی امید ہے۔',
+            'category_slug' => 'technology',
             'is_breaking' => 1,
-            'image' => 'https://via.placeholder.com/600x400/ffc107/333333?text=Islamic+Finance',
+            'image' => 'https://via.placeholder.com/600x400/38a169/ffffff?text=AI+Technology',
             'is_sponsored' => 1,
             'published_at' => date('Y-m-d H:i:s', strtotime('-3 days'))
         ],
         [
-            'title_en' => 'The Architectural Grandeur of Islamic Civilizations',
-            'title_ur' => 'اسلامی تہذیبوں کی تعمیراتی عظمت',
-            'content_en' => 'Islamic civilization has left an indelible mark on the world through its magnificent architectural achievements. From the majestic mosques of Istanbul and Cairo to the intricate palaces of Alhambra and the innovative urban planning of Baghdad, Islamic architecture reflects a rich blend of artistic brilliance, scientific knowledge, and spiritual symbolism. This article explores the key elements that define Islamic architecture, including geometric patterns, calligraphy, arches, domes, and courtyards, and their evolution across different regions and dynasties. It highlights how these structures were not merely buildings but living expressions of Islamic faith, culture, and societal values. The fusion of diverse influences, including Persian, Byzantine, and Roman, led to a unique architectural language that emphasized harmony, symmetry, and divine beauty. The use of water features, gardens, and light further enhanced the spiritual and aesthetic experience. Examples such as the Dome of the Rock, the Great Mosque of Cordoba, and the Taj Mahal stand as testaments to the enduring legacy of Islamic architectural grandeur, continuing to inspire awe and admiration worldwide. These buildings often served multiple purposes, acting as centers for worship, education, commerce, and social gathering, reflecting the holistic nature of Islamic society. The skilled craftsmanship and innovative engineering techniques employed in their construction are a testament to the advanced knowledge of the time. The emphasis on intricate details, vibrant colors, and natural elements created environments that were both functional and spiritually uplifting. This rich architectural heritage offers invaluable insights into the artistic and scientific achievements of Islamic civilizations, inspiring contemporary architects and artists to this day. The preservation and study of these historical sites are crucial for understanding the profound cultural and spiritual contributions of Islam to global heritage.',
-            'content_ur' => 'اسلامی تہذیب نے اپنی شاندار تعمیراتی کامیابیوں کے ذریعے دنیا پر ایک انمٹ نقش چھوڑا ہے۔ استنبول اور قاہرہ کی پرشکوہ مساجد سے لے کر الحمرا کے پیچیدہ محلات اور بغداد کی جدید شہری منصوبہ بندی تک، اسلامی فن تعمیر فنکارانہ ذہانت، سائنسی علم، اور روحانی علامت کا ایک بھرپور امتزاج ظاہر کرتا ہے۔ یہ مضمون اسلامی فن تعمیر کو متعین کرنے والے کلیدی عناصر کو تلاش کرتا ہے، جن میں ہندسی نمونے، خطاطی، محرابیں، گنبد، اور صحن شامل ہیں، اور مختلف علاقوں اور خاندانوں میں ان کے ارتقاء کو بیان کرتا ہے۔ یہ اس بات پر روشنی ڈالتا ہے کہ یہ ڈھانچے صرف عمارتیں نہیں تھے بلکہ اسلامی عقیدے، ثقافت، اور سماجی اقدار کا ایک زندہ اظہار تھے۔ فارسی، بازنطینی، اور رومن سمیت مختلف اثرات کے امتزاج نے ایک منفرد تعمیراتی زبان کو جنم دیا جس میں ہم آہنگی، توازن، اور الہی خوبصورتی پر زور دیا گیا تھا۔ پانی کی خصوصیات، باغات، اور روشنی کے استعمال نے روحانی اور جمالیاتی تجربے کو مزید بڑھایا۔ گنبد الصخرہ، قرطبہ کی عظیم مسجد، اور تاج محل جیسی مثالیں اسلامی تعمیراتی عظمت کی پائیدار وراثت کے ثبوت کے طور پر کھڑی ہیں، جو دنیا بھر میں حیرت اور تعریف کو متاثر کرتی رہتی ہیں۔ یہ عمارتیں اکثر متعدد مقاصد کی تکمیل کرتی تھیں، عبادت، تعلیم، تجارت، اور سماجی اجتماعات کے مراکز کے طور پر کام کرتی تھیں، جو اسلامی معاشرے کی جامع نوعیت کو ظاہر کرتی ہیں۔ ان کی تعمیر میں استعمال ہونے والی ہنر مند کاریگری اور جدید انجینئرنگ کی تکنیکیں اس وقت کے جدید علم کا ثبوت ہیں۔ پیچیدہ تفصیلات، وشد رنگوں، اور قدرتی عناصر پر زور نے ایسے ماحول پیدا کیے جو عملی اور روحانی طور پر بلند کرنے والے تھے۔ یہ بھرپور تعمیراتی ورثہ اسلامی تہذیبوں کے فنکارانہ اور سائنسی کارناموں کے بارے میں انمول بصیرت پیش کرتا ہے، جو آج بھی عصری معماروں اور فنکاروں کو متاثر کرتا ہے۔ ان تاریخی مقامات کا تحفظ اور مطالعہ عالمی ورثے میں اسلام کے گہرے ثقافتی اور روحانی شراکت کو سمجھنے کے لیے بہت اہم ہے۔',
-            'category_slug' => 'history-islam',
+            'title_en' => 'Education Reform Initiative Shows Promising Results',
+            'title_ur' => 'تعلیمی اصلاحات کی مہم امید افزا نتائج دکھا رہی ہے',
+            'content_en' => 'The government\'s education reform initiative has shown promising results with increased literacy rates and improved school infrastructure. Digital learning tools are being introduced in rural areas to bridge the educational gap. This long-term project aims to ensure quality education for all citizens.',
+            'content_ur' => 'حکومت کی تعلیمی اصلاحات کی مہم نے خواندگی کی شرح میں اضافے اور اسکولوں کے بنیادی ڈھانچے میں بہتری کے ساتھ امید افزا نتائج دکھائے ہیں۔ تعلیمی فرق کو ختم کرنے کے لیے دیہی علاقوں میں ڈیجیٹل تعلیمی ٹولز متعارف کرائے جا رہے ہیں۔ اس طویل المدتی منصوبے کا مقصد تمام شہریوں کے لیے معیاری تعلیم کو یقینی بنانا ہے۔',
+            'category_slug' => 'national',
             'is_breaking' => 0,
-            'image' => 'https://via.placeholder.com/600x400/20c997/ffffff?text=Islamic+Architecture',
+            'image' => 'https://via.placeholder.com/600x400/1a365d/ffffff?text=Education+Reform',
             'is_sponsored' => 0,
             'published_at' => date('Y-m-d H:i:s', strtotime('-4 days'))
-        ],
-        [
-            'title_en' => 'Ramadan: A Month of Spiritual Reflection and Community Bonding',
-            'title_ur' => 'رمضان: روحانی غور و فکر اور برادری کے تعلق کا مہینہ',
-            'content_en' => 'Ramadan, the ninth month of the Islamic calendar, is observed by Muslims worldwide as a month of fasting, prayer, reflection, and community. It commemorates the first revelation of the Quran to Prophet Muhammad (peace be upon him). During this month, Muslims abstain from food and drink from dawn until sunset, a practice known as Sawm. Beyond mere abstinence, Ramadan encourages heightened spiritual awareness, self-discipline, and devotion to Allah. It is a time for increased recitation of the Quran, extra prayers (Tarawih), and charitable acts (Sadaqah and Zakat). The spirit of generosity and compassion flourishes, with Muslims often breaking their fasts together (Iftar) and engaging in communal worship. This communal aspect strengthens bonds within families and the wider Muslim community, fostering a sense of unity and shared purpose. Ramadan is also a period of introspection, allowing individuals to evaluate their lives, seek forgiveness, and renew their commitment to Islamic teachings. The last ten nights of Ramadan are particularly significant, as one of them is Laylat al-Qadr (the Night of Power), believed to be when the first verses of the Quran were revealed. Observing Ramadan culminates in the joyous celebration of Eid al-Fitr, a day of gratitude and togetherness. The teachings and practices of Ramadan aim to instill virtues that last beyond the holy month, promoting a continuous state of mindfulness, empathy, and devotion throughout the year. It serves as an annual spiritual training ground, enabling believers to purify their souls and draw closer to their Creator. The communal meals, shared prayers, and collective charitable efforts during Ramadan embody the core Islamic values of solidarity and mutual support, making it a truly transformative experience for millions.',
-            'content_ur' => 'رمضان، اسلامی کیلنڈر کا نواں مہینہ، دنیا بھر کے مسلمانوں کی طرف سے روزے، دعا، غور و فکر، اور برادری کے مہینے کے طور پر منایا جاتا ہے۔ یہ نبی اکرم صلی اللہ علیہ وسلم پر قرآن کے پہلے نزول کی یادگار ہے۔ اس مہینے کے دوران، مسلمان فجر سے غروب آفتاب تک کھانے پینے سے پرہیز کرتے ہیں، جسے صوم کہتے ہیں۔ محض پرہیز کے علاوہ، رمضان روحانی بیداری، خود انظباط، اور اللہ کے ساتھ لگاؤ کو بڑھاتا ہے۔ یہ قرآن کی تلاوت، اضافی نمازوں (تراویح)، اور خیراتی کاموں (صدقہ اور زکوٰۃ) میں اضافے کا وقت ہے۔ سخاوت اور ہمدردی کا جذبہ پھلتا پھولتا ہے، مسلمان اکثر اپنی افطاری ایک ساتھ کرتے ہیں اور اجتماعی عبادت میں مشغول ہوتے ہیں۔ یہ اجتماعی پہلو خاندانوں اور وسیع تر مسلم برادری کے اندر تعلقات کو مضبوط کرتا ہے، جس سے اتحاد اور مشترکہ مقصد کا احساس پیدا ہوتا ہے۔ رمضان خود احتسابی کا بھی ایک دور ہے، جو افراد کو اپنی زندگیوں کا جائزہ لینے، معافی مانگنے، اور اسلامی تعلیمات کے ساتھ اپنے عزم کی تجدید کرنے کی اجازت دیتا ہے۔ رمضان کی آخری دس راتیں خاص طور پر اہم ہیں، کیونکہ ان میں سے ایک لیلۃ القدر (طاقت کی رات) ہے، جس کے بارے میں خیال کیا جاتا ہے کہ اس رات قرآن کی پہلی آیات نازل ہوئیں۔ رمضان کا اختتام عید الفطر کی پرمسرت تقریب میں ہوتا ہے، جو شکرگزاری اور یکجہتی کا دن ہے۔ رمضان کی تعلیمات اور طریقوں کا مقصد ایسی خوبیوں کو فروغ دینا ہے جو مقدس مہینے سے آگے تک جاری رہیں، جو پورے سال شعور، ہمدردی، اور لگن کی مسلسل حالت کو فروغ دیتی ہیں۔ یہ ایک سالانہ روحانی تربیتی میدان کے طور پر کام کرتا ہے، جو مومنوں کو اپنی روحوں کو پاک کرنے اور اپنے خالق کے قریب ہونے کے قابل بناتا ہے۔ رمضان کے دوران اجتماعی کھانوں، مشترکہ نمازوں، اور اجتماعی خیراتی کوششوں میں یکجہتی اور باہمی تعاون کی بنیادی اسلامی اقدار شامل ہیں، جو اسے لاکھوں لوگوں کے لیے ایک حقیقی تبدیلی کا تجربہ بناتی ہے۔',
-            'category_slug' => 'spirituality-ethics',
-            'is_breaking' => 0,
-            'image' => 'https://via.placeholder.com/600x400/dc3545/ffffff?text=Ramadan',
-            'is_sponsored' => 0,
-            'published_at' => date('Y-m-d H:i:s', strtotime('-5 days'))
         ]
     ];
     foreach ($sample_articles as $article) {
@@ -282,11 +267,13 @@ if ($admin_check['count'] == 0) {
         $stmt->execute();
     }
     $stmt = $conn->prepare("INSERT INTO subscription_plans (name_en, name_ur, description_en, description_ur, price, duration_days, features) VALUES (?, ?, ?, ?, ?, ?, ?)");
-    $features_premium_en = json_encode(['Ad-free experience', 'Exclusive Islamic content', 'Early access to scholarly articles']);
-    $features_premium_ur = json_encode(['اشتہار سے پاک تجربہ', 'خصوصی اسلامی مواد', 'علمی مضامین تک قبل از وقت رسائی']);
+    $features_premium_en = json_encode(['Ad-free experience', 'Exclusive content', 'Early access to articles']);
+    $features_premium_ur = json_encode(['اشتہار سے پاک تجربہ', 'خصوصی مواد', 'مضامین تک قبل از وقت رسائی']);
     $price_premium = 9.99;
     $duration_premium = 30;
-    $stmt->bind_param("ssssdis", 'Premium Islamic Access', 'پریمیم اسلامی رسائی', 'Full access to all exclusive Islamic content, ad-free.', 'تمام خصوصی اسلامی مواد تک مکمل رسائی، اشتہار سے پاک۔', $price_premium, $duration_premium, $features_premium_en);
+    $stmt->bind_param("ssssdis", 'Premium', 'پریمیم', 'Full access to all content, ad-free.', 'تمام مواد تک مکمل رسائی، اشتہار سے پاک۔', $price_premium, $duration_premium, $features_premium_en);
+    $stmt->execute();
+    $stmt->bind_param("ssssdis", 'Premium', 'پریمیم', 'Full access to all content, ad-free.', 'تمام مواد تک مکمل رسائی، اشتہار سے پاک۔', $price_premium, $duration_premium, $features_premium_ur);
     $stmt->execute();
 }
 $lang = $_GET['lang'] ?? $_SESSION['lang'] ?? 'en';
@@ -362,39 +349,6 @@ function is_subscribed($user_id)
     return $row['active_subscriptions'] > 0;
 }
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-
-
-    if (isset($_POST['send_contact_message'])) {
-        $name = htmlspecialchars(trim($_POST['contact_name']));
-        $email = filter_var(trim($_POST['contact_email']), FILTER_SANITIZE_EMAIL);
-        $subject = htmlspecialchars(trim($_POST['contact_subject']));
-        $message = htmlspecialchars(trim($_POST['contact_message']));
-
-        if (empty($name) || !filter_var($email, FILTER_VALIDATE_EMAIL) || empty($subject) || empty($message)) {
-            $error = ($lang === 'ur' ? 'براہ کرم تمام فیلڈز کو درست طریقے سے پُر کریں۔' : 'Please fill all fields correctly.');
-        } else {
-            $to = 'info@islamictimes.pk';
-            $email_subject = "New Contact Form Submission: " . $subject;
-            $headers = "From: " . $name . " <" . $email . ">\r\n";
-            $headers .= "Reply-To: " . $email . "\r\n";
-            $headers .= "Content-Type: text/plain; charset=UTF-8\r\n";
-            $headers .= "X-Mailer: PHP/" . phpversion();
-
-            $email_body = "You have received a new message from the Islamic Times contact form.\n\n";
-            $email_body .= "----------------------------------------\n";
-            $email_body .= "Name:    $name\n";
-            $email_body .= "Email:   $email\n";
-            $email_body .= "Subject: $subject\n";
-            $email_body .= "----------------------------------------\n\n";
-            $email_body .= "Message:\n$message\n";
-
-            if (mail($to, $email_subject, $email_body, $headers)) {
-                $success = ($lang === 'ur' ? 'آپ کا پیغام کامیابی سے بھیج دیا گیا ہے۔' : 'Your message has been sent successfully.');
-            } else {
-                $error = ($lang === 'ur' ? 'خرابی! آپ کا پیغام نہیں بھیجا جا سکا۔' : 'Error! Your message could not be sent.');
-            }
-        }
-    }
     if (isset($_POST['login'])) {
         if (login($_POST['username'], $_POST['password'])) {
             header("Location: " . $_SERVER['PHP_SELF']);
@@ -867,7 +821,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $result = $stmt_select->get_result();
         $submission_data = $result->fetch_assoc();
         if ($submission_data && $submission_data['image'] && file_exists($submission_data['image'])) {
-            unlink(getcwd() . '/' . $submission_data['image']);
+            unlink($submission_data['image']);
         }
         $stmt = $conn->prepare("DELETE FROM user_submissions WHERE id = ?");
         $stmt->bind_param("i", $submission_id);
@@ -989,17 +943,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             } else {
                 $error = ($lang === 'ur' ? 'پول شامل کرنے میں ناکامی' : 'Failed to add poll');
             }
-        }
-    }
-    if (isset($_POST['delete_poll']) && hasRole('admin')) {
-        $poll_id = $_POST['poll_id'];
-        $stmt = $conn->prepare("DELETE FROM polls WHERE id = ?");
-        $stmt->bind_param("i", $poll_id);
-        if ($stmt->execute()) {
-            $success = ($lang === 'ur' ? 'پول کامیابی سے حذف کر دیا گیا' : 'Poll deleted successfully');
-            log_activity($_SESSION['user_id'], 'delete_poll', 'Deleted poll ID: ' . $poll_id);
-        } else {
-            $error = ($lang === 'ur' ? 'پول حذف کرنے میں ناکامی' : 'Failed to delete poll');
         }
     }
     if (isset($_POST['vote_poll']) && isLoggedIn()) {
@@ -1309,7 +1252,7 @@ if (isset($_GET['logout'])) {
 }
 if (isset($_GET['action']) && $_GET['action'] === 'export' && hasRole('admin')) {
     header('Content-Type: application/json');
-    header('Content-Disposition: attachment; filename="islamic_newspaper_backup_' . date('Y-m-d') . '.json"');
+    header('Content-Disposition: attachment; filename="newspaper_backup_' . date('Y-m-d') . '.json"');
     $tables_to_export = [
         'users',
         'categories',
@@ -1366,9 +1309,9 @@ if ($view === 'article' && $article_id) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="author" content="Yasin Ullah, Pakistan">
     <?php
-    $current_meta_title = ($lang === 'ur' ? 'اسلامک ٹائمز - اسلامی خبریں، مضامین اور بلاگز' : 'Islamic Times - Islamic News, Articles & Blogs');
-    $current_meta_description = "Complete Islamic Newspaper and Blog - Latest Islamic News, Scholarly Articles, Fiqh, History of Islam, and Spirituality in Urdu and English. Breaking news from the Muslim world.";
-    $current_meta_keywords = "Islamic News, Urdu Islamic News, English Islamic News, Breaking Muslim World News, Fiqh, Sharia, Islamic History, Spirituality, Ethics, Muslim World, Islamic Times, Yasin Ullah";
+    $current_meta_title = ($lang === 'ur' ? 'پاکستان ٹائمز - تازہ خبریں، اردو اور انگریزی میں' : 'Pakistan Times - Latest News in Urdu and English');
+    $current_meta_description = "Complete Pakistani Newspaper - Latest News in Urdu and English. Breaking news, sports, technology, and business updates from Pakistan.";
+    $current_meta_keywords = "Pakistan News, Urdu News, English News, Breaking News, Sports, Politics, Technology, Business, Entertainment, Opinion, Pakistan Times, Yasin Ullah";
     if ($view === 'article' && $article_id) {
         $stmt_seo = $conn->prepare("SELECT seo_meta_title_en, seo_meta_title_ur, seo_meta_description_en, seo_meta_description_ur, seo_keywords_en, seo_keywords_ur FROM articles WHERE id = ?");
         $stmt_seo->bind_param("i", $article_id);
@@ -1388,44 +1331,28 @@ if ($view === 'article' && $article_id) {
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Noto+Naskh+Arabic:wght@400;700&family=Jameel+Noori+Nastaleeq&family=Roboto+Serif:wght@300;400;500;700&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+Urdu:wght@300;400;500;700&family=Roboto:wght@300;400;500;700&display=swap');
 
         :root {
-            --primary-color: #28a745;
-
-            --secondary-color: #007bff;
-
-            --accent-color: #ffc107;
-
-            --text-color: #343a40;
-
-            --bg-color: #f8f9fa;
-
-            --card-bg: #ffffff;
-
-            --border-color: #e0e0e0;
-
+            --primary-color: #1a365d;
+            --secondary-color: #e53e3e;
+            --accent-color: #38a169;
+            --text-color: #2d3748;
+            --bg-color: #ffffff;
+            --card-bg: #f7fafc;
+            --border-color: #e2e8f0;
             --heading-color: #1a365d;
-
         }
 
         [data-theme="dark"] {
-            --primary-color: #155724;
-
-            --secondary-color: #0d6efd;
-
-            --accent-color: #d68f00;
-
+            --primary-color: #4a5568;
+            --secondary-color: #e53e3e;
+            --accent-color: #48bb78;
             --text-color: #e2e8f0;
-
-            --bg-color: #212529;
-
-            --card-bg: #343a40;
-
-            --border-color: #495057;
-
-            --heading-color: #f8f9fa;
-
+            --bg-color: #1a202c;
+            --card-bg: #2d3748;
+            --border-color: #4a5568;
+            --heading-color: #cbd5e0;
         }
 
         * {
@@ -1433,17 +1360,15 @@ if ($view === 'article' && $article_id) {
         }
 
         body {
-            font-family: 'Roboto Serif', serif;
+            font-family: 'Roboto', sans-serif;
             background-color: var(--bg-color);
             color: var(--text-color);
             transition: all 0.3s ease;
             line-height: 1.6;
-            margin: 0;
-            padding: 0;
         }
 
         [dir="rtl"] body {
-            font-family: 'Jameel Noori Nastaleeq', 'Noto Naskh Arabic', sans-serif;
+            font-family: 'Noto Sans Urdu', sans-serif;
         }
 
         h1,
@@ -1482,30 +1407,17 @@ if ($view === 'article' && $article_id) {
         }
 
         .breaking-news {
-            background: var(--accent-color);
-            color: var(--text-color);
+            background: var(--secondary-color);
+            color: white;
             padding: 10px 0;
             overflow: hidden;
             white-space: nowrap;
             box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
-            font-weight: 600;
-        }
-
-        .breaking-news strong {
-            background: var(--secondary-color);
-            color: white;
-            padding: 8px 15px;
-            margin-right: 15px;
-            display: inline-block;
-            vertical-align: middle;
-            border-radius: 5px;
-            box-shadow: 2px 0 5px rgba(0, 0, 0, 0.2);
         }
 
         .breaking-ticker {
             display: inline-block;
             animation: scroll-left 30s linear infinite;
-            padding-left: 20px;
         }
 
         @keyframes scroll-left {
@@ -1577,7 +1489,7 @@ if ($view === 'article' && $article_id) {
         }
 
         .category-badge {
-            background: var(--secondary-color);
+            background: var(--accent-color);
             color: white;
             padding: 4px 12px;
             border-radius: 20px;
@@ -1680,7 +1592,7 @@ if ($view === 'article' && $article_id) {
             color: var(--heading-color);
             font-weight: 600;
             margin-bottom: 15px;
-            border-bottom: 2px solid var(--primary-color);
+            border-bottom: 2px solid var(--secondary-color);
             padding-bottom: 8px;
         }
 
@@ -1696,8 +1608,8 @@ if ($view === 'article' && $article_id) {
         }
 
         .most-read-number {
-            background: var(--accent-color);
-            color: var(--text-color);
+            background: var(--secondary-color);
+            color: white;
             width: 35px;
             height: 35px;
             border-radius: 50%;
@@ -1732,7 +1644,7 @@ if ($view === 'article' && $article_id) {
         .language-toggle {
             background: var(--accent-color);
             border: none;
-            color: var(--heading-color);
+            color: white;
             border-radius: 6px;
             padding: 5px 15px;
             font-weight: 500;
@@ -1740,8 +1652,7 @@ if ($view === 'article' && $article_id) {
         }
 
         .language-toggle:hover {
-            background: var(--secondary-color);
-            color: white;
+            background: #2d8c56;
         }
 
         .search-box {
@@ -1755,7 +1666,7 @@ if ($view === 'article' && $article_id) {
 
         .search-box:focus {
             border-color: var(--primary-color);
-            box-shadow: 0 0 0 0.2rem rgba(40, 167, 69, 0.25);
+            box-shadow: 0 0 0 0.2rem rgba(26, 54, 93, 0.25);
         }
 
         .pagination {
@@ -1782,7 +1693,7 @@ if ($view === 'article' && $article_id) {
         }
 
         .admin-panel {
-            background: linear-gradient(135deg, #1d6e3c 0%, #0056b3 100%);
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             border-radius: 12px;
             padding: 20px;
             color: white;
@@ -1802,7 +1713,7 @@ if ($view === 'article' && $article_id) {
         .stats-number {
             font-size: 2.5rem;
             font-weight: 700;
-            color: var(--primary-color);
+            color: var(--secondary-color);
         }
 
         .footer {
@@ -1842,7 +1753,7 @@ if ($view === 'article' && $article_id) {
             background: var(--card-bg);
             border-color: var(--primary-color);
             color: var(--text-color);
-            box-shadow: 0 0 0 0.2rem rgba(40, 167, 69, 0.25);
+            box-shadow: 0 0 0 0.2rem rgba(26, 54, 93, 0.25);
         }
 
         .modal-content {
@@ -2128,14 +2039,12 @@ if ($view === 'article' && $article_id) {
         }
 
         .breaking-news.print-hidden strong {
-            background: var(--secondary-color);
+            background: #e53e3e;
             position: relative;
-            left: 0;
+            left: -105px;
             opacity: 1;
             z-index: 999;
             padding: 12px 8px;
-            position: relative;
-            left: -104px;
         }
     </style>
 </head>
@@ -2145,8 +2054,8 @@ if ($view === 'article' && $article_id) {
     <nav class="navbar navbar-expand-lg navbar-dark print-hidden">
         <div class="container">
             <a class="navbar-brand" href="?lang=<?= $lang ?>">
-                <i class="fas fa-mosque me-2"></i>
-                <?= $lang === 'ur' ? 'اسلامک ٹائمز' : 'Islamic Times' ?>
+                <i class="fas fa-newspaper me-2"></i>
+                <?= $lang === 'ur' ? 'پاکستان ٹائمز' : 'Pakistan Times' ?>
             </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
@@ -2179,7 +2088,7 @@ if ($view === 'article' && $article_id) {
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="?view=submissions&lang=<?= $lang ?>">
-                            <i class="fas fa-feather-alt me-1"></i>
+                            <i class="fas fa-upload me-1"></i>
                             <?= $lang === 'ur' ? 'مضامین جمع کروائیں' : 'Submit Article' ?>
                         </a>
                     </li>
@@ -2192,7 +2101,7 @@ if ($view === 'article' && $article_id) {
                     <?php if (canEdit()): ?>
                         <li class="nav-item">
                             <a class="nav-link" href="?view=admin&lang=<?= $lang ?>">
-                                <i class="fas fa-tools me-1"></i>
+                                <i class="fas fa-cog me-1"></i>
                                 <?= $lang === 'ur' ? 'ایڈمن' : 'Admin' ?>
                             </a>
                         </li>
@@ -2254,7 +2163,7 @@ if ($view === 'article' && $article_id) {
     ?>
         <div class="breaking-news print-hidden" role="marquee" aria-label="Breaking News">
             <div class="container">
-                <strong><?= $lang === 'ur' ? 'فوری خبریں:' : 'BREAKING NEWS:' ?></strong>
+                <strong><?= $lang === 'ur' ? 'بریکنگ نیوز:' : 'BREAKING NEWS:' ?></strong>
                 <span class="breaking-ticker" aria-live="polite">
                     <?php
                     $news_items = [];
@@ -2335,54 +2244,13 @@ if ($view === 'article' && $article_id) {
                     case 'author':
                         include_author_view();
                         break;
-                    case 'contact':
-                        include_contact_view();
-                        break;
-
-                    case 'islamic-calendar':
-                        include_islamic_calendar_view();
-                        break;
                     default:
                         include_home_view();
-                }
-                function include_contact_view()
-                {
-                    global $lang;
-                    echo '<h2 class="mb-4">' . ($lang === 'ur' ? 'رابطہ کریں' : 'Contact Us') . '</h2>';
-                    echo '<div class="card shadow-sm"><div class="card-body">';
-                    echo '
-        <p>' . ($lang === 'ur' ? 'ہمارے پاس کوئی سوال یا رائے ہے؟ نیچے دیا گیا فارم پُر کریں اور ہماری ٹیم جلد از جلد آپ سے رابطہ کرے گی۔' : 'Have a question or feedback? Fill out the form below and our team will get back to you as soon as possible.') . '</p>
-        <hr>
-        <form method="POST" action="?view=contact&lang=' . $lang . '" class="needs-validation" novalidate>
-            <div class="mb-3">
-                <label for="contactName" class="form-label">' . ($lang === 'ur' ? 'آپ کا نام' : 'Your Name') . '</label>
-                <input type="text" name="contact_name" id="contactName" class="form-control" required>
-                <div class="invalid-feedback">' . ($lang === 'ur' ? 'نام درکار ہے۔' : 'Name is required.') . '</div>
-            </div>
-            <div class="mb-3">
-                <label for="contactEmail" class="form-label">' . ($lang === 'ur' ? 'آپ کا ای میل' : 'Your Email') . '</label>
-                <input type="email" name="contact_email" id="contactEmail" class="form-control" required>
-                <div class="invalid-feedback">' . ($lang === 'ur' ? 'درست ای میل درکار ہے۔' : 'A valid email is required.') . '</div>
-            </div>
-            <div class="mb-3">
-                <label for="contactSubject" class="form-label">' . ($lang === 'ur' ? 'موضوع' : 'Subject') . '</label>
-                <input type="text" name="contact_subject" id="contactSubject" class="form-control" required>
-                <div class="invalid-feedback">' . ($lang === 'ur' ? 'موضوع درکار ہے۔' : 'Subject is required.') . '</div>
-            </div>
-            <div class="mb-3">
-                <label for="contactMessage" class="form-label">' . ($lang === 'ur' ? 'پیغام' : 'Message') . '</label>
-                <textarea name="contact_message" id="contactMessage" class="form-control" rows="5" required></textarea>
-                <div class="invalid-feedback">' . ($lang === 'ur' ? 'پیغام خالی نہیں ہو سکتا۔' : 'Message cannot be empty.') . '</div>
-            </div>
-            <button type="submit" name="send_contact_message" class="btn btn-primary">' . ($lang === 'ur' ? 'پیغام بھیجیں' : 'Send Message') . '</button>
-        </form>
-    ';
-                    echo '</div></div>';
                 }
                 function include_home_view()
                 {
                     global $conn, $lang;
-                    echo '<h2 class="mb-4">' . ($lang === 'ur' ? 'تازہ مضامین' : 'Latest Articles') . '</h2>';
+                    echo '<h2 class="mb-4">' . ($lang === 'ur' ? 'تازہ خبریں' : 'Latest News') . '</h2>';
                     display_ad('home_top');
                     $page = $_GET['page'] ?? 1;
                     $limit = 6;
@@ -2426,7 +2294,7 @@ if ($view === 'article' && $article_id) {
                         echo '</h5>';
                         echo '<p class="card-text">' . htmlspecialchars(substr(strip_tags($content), 0, 150)) . '...</p>';
                         echo '<div class="meta-info mt-auto">';
-                        echo '<i class="fas fa-user me-1"></i><a href="?view=author&id=' . ($article['author_id'] ?? '') . '&lang=' . $lang . '">' . htmlspecialchars($article['username'] ?? ($lang === 'ur' ? 'نامعلوم مصنف' : 'Unknown Author')) . '</a> • ';
+                        echo '<i class="fas fa-user me-1"></i>' . htmlspecialchars($article['username'] ?? ($lang === 'ur' ? 'نامعلوم مصنف' : 'Unknown Author')) . ' • ';
                         echo '<i class="fas fa-calendar me-1"></i>' . date('M j, Y', strtotime($article['published_at'])) . ' • ';
                         echo '<i class="fas fa-eye me-1"></i>' . $article['views'] . ' ' . ($lang === 'ur' ? 'مناظر' : 'views') . ' • ';
                         echo '<i class="fas fa-thumbs-up me-1"></i>' . $article['likes'] . ' ' . ($lang === 'ur' ? 'پسندیدگیاں' : 'likes');
@@ -2522,7 +2390,7 @@ if ($view === 'article' && $article_id) {
                     echo '</div>';
                     echo '</div></article>';
                     echo '<div class="sidebar mt-4 print-hidden">';
-                    echo '<h5><i class="fas fa-book-open me-2"></i>' . ($lang === 'ur' ? 'متعلقہ مضامین' : 'Related Articles') . '</h5>';
+                    echo '<h5><i class="fas fa-newspaper me-2"></i>' . ($lang === 'ur' ? 'متعلقہ مضامین' : 'Related Articles') . '</h5>';
                     $related_articles_query = $conn->prepare("
                         SELECT a.id, a.title_en, a.title_ur, a.image, a.views, c.slug 
                         FROM articles a 
@@ -2673,7 +2541,7 @@ if ($view === 'article' && $article_id) {
                         echo '</h5>';
                         echo '<p class="card-text">' . htmlspecialchars(substr(strip_tags($content), 0, 150)) . '...</p>';
                         echo '<div class="meta-info mt-auto">';
-                        echo '<i class="fas fa-user me-1"></i><a href="?view=author&id=' . ($article['author_id'] ?? '') . '&lang=' . $lang . '">' . htmlspecialchars($article['username'] ?? ($lang === 'ur' ? 'نامعلوم مصنف' : 'Unknown Author')) . '</a> • ';
+                        echo '<i class="fas fa-user me-1"></i>' . htmlspecialchars($article['username'] ?? ($lang === 'ur' ? 'نامعلوم مصنف' : 'Unknown Author')) . ' • ';
                         echo '<i class="fas fa-calendar me-1"></i>' . date('M j, Y', strtotime($article['published_at'])) . ' • ';
                         echo '<i class="fas fa-eye me-1"></i>' . $article['views'] . ' ' . ($lang === 'ur' ? 'مناظر' : 'views');
                         echo '</div>';
@@ -2852,7 +2720,7 @@ if ($view === 'article' && $article_id) {
                         echo '</h5>';
                         echo '<p class="card-text">' . htmlspecialchars(substr(strip_tags($content), 0, 150)) . '...</p>';
                         echo '<div class="meta-info mt-auto">';
-                        echo '<i class="fas fa-user me-1"></i><a href="?view=author&id=' . ($article['author_id'] ?? '') . '&lang=' . $lang . '">' . htmlspecialchars($article['username'] ?? ($lang === 'ur' ? 'نامعلوم مصنف' : 'Unknown Author')) . '</a> • ';
+                        echo '<i class="fas fa-user me-1"></i>' . htmlspecialchars($article['username'] ?? ($lang === 'ur' ? 'نامعلوم مصنف' : 'Unknown Author')) . ' • ';
                         echo '<i class="fas fa-calendar me-1"></i>' . date('M j, Y', strtotime($article['published_at']));
                         echo '</div>';
                         echo '<a href="?view=article&id=' . $article['id'] . '&lang=' . $lang . '" class="btn btn-primary mt-3">';
@@ -2882,7 +2750,7 @@ if ($view === 'article' && $article_id) {
                         return;
                     }
                     echo '<div class="admin-panel">';
-                    echo '<h2><i class="fas fa-tools me-2"></i>' . ($lang === 'ur' ? 'ایڈمن پینل' : 'Admin Panel') . '</h2>';
+                    echo '<h2><i class="fas fa-cog me-2"></i>' . ($lang === 'ur' ? 'ایڈمن پینل' : 'Admin Panel') . '</h2>';
                     echo '<p>' . ($lang === 'ur' ? 'خوش آمدید، ' : 'Welcome, ') . htmlspecialchars($_SESSION['username']) . '</p>';
                     echo '</div>';
                     $total_articles = $conn->query("SELECT COUNT(*) as count FROM articles")->fetch_assoc()['count'];
@@ -3630,8 +3498,8 @@ if ($view === 'article' && $article_id) {
                                 datasets: [{
                                     label: "<?= ($lang === 'ur' ? 'مضامین کے مناظر' : 'Article Views') ?>",
                                     data: <?= json_encode($views_values) ?>,
-                                    backgroundColor: "rgba(40, 167, 69, 0.7)",
-                                    borderColor: "rgba(40, 167, 69, 1)",
+                                    backgroundColor: "rgba(26, 54, 93, 0.7)",
+                                    borderColor: "rgba(26, 54, 93, 1)",
                                     borderWidth: 1
                                 }]
                             },
@@ -3663,7 +3531,7 @@ if ($view === 'article' && $article_id) {
                                     label: "<?= ($lang === 'ur' ? 'صارف رجسٹریشن' : 'User Registrations') ?>",
                                     data: <?= json_encode($reg_values) ?>,
                                     fill: false,
-                                    borderColor: "rgba(0, 123, 255, 0.7)",
+                                    borderColor: "rgba(229, 62, 62, 0.7)",
                                     tension: 0.1
                                 }]
                             },
@@ -3853,7 +3721,7 @@ if ($view === 'article' && $article_id) {
                 function include_breaking_news_view()
                 {
                     global $conn, $lang;
-                    echo '<h2 class="mb-4">' . ($lang === 'ur' ? 'فوری خبریں' : 'Breaking News') . '</h2>';
+                    echo '<h2 class="mb-4">' . ($lang === 'ur' ? 'بریکنگ نیوز' : 'Breaking News') . '</h2>';
                     $page = $_GET['page'] ?? 1;
                     $limit = 6;
                     $offset = ($page - 1) * $limit;
@@ -3871,7 +3739,7 @@ if ($view === 'article' && $article_id) {
                     $stmt->execute();
                     $articles = $stmt->get_result();
                     if ($articles->num_rows === 0) {
-                        echo '<div class="alert alert-info" role="alert">' . ($lang === 'ur' ? 'کوئی فوری خبر دستیاب نہیں ہے۔' : 'No breaking news available.') . '</div>';
+                        echo '<div class="alert alert-info" role="alert">' . ($lang === 'ur' ? 'کوئی بریکنگ نیوز دستیاب نہیں ہے۔' : 'No breaking news available.') . '</div>';
                     }
                     echo '<div class="row">';
                     while ($article = $articles->fetch_assoc()) {
@@ -3894,7 +3762,7 @@ if ($view === 'article' && $article_id) {
                         echo '</h5>';
                         echo '<p class="card-text">' . htmlspecialchars(substr(strip_tags($content), 0, 150)) . '...</p>';
                         echo '<div class="meta-info mt-auto">';
-                        echo '<i class="fas fa-user me-1"></i><a href="?view=author&id=' . ($article['author_id'] ?? '') . '&lang=' . $lang . '">' . htmlspecialchars($article['username'] ?? ($lang === 'ur' ? 'نامعلوم مصنف' : 'Unknown Author')) . '</a> • ';
+                        echo '<i class="fas fa-user me-1"></i>' . htmlspecialchars($article['username'] ?? ($lang === 'ur' ? 'نامعلوم مصنف' : 'Unknown Author')) . ' • ';
                         echo '<i class="fas fa-calendar me-1"></i>' . date('M j, Y', strtotime($article['published_at'])) . ' • ';
                         echo '<i class="fas fa-eye me-1"></i>' . $article['views'] . ' ' . ($lang === 'ur' ? 'مناظر' : 'views');
                         echo '</div>';
@@ -3939,7 +3807,7 @@ if ($view === 'article' && $article_id) {
                         LEFT JOIN categories c ON a.category_id = c.id 
                         LEFT JOIN users u ON a.author_id = u.id 
                         WHERE YEAR(a.published_at) = ? AND MONTH(a.published_at) = ? AND a.status = 'published' AND a.published_at <= NOW()
-                                                ORDER BY a.published_at DESC 
+                        ORDER BY a.published_at DESC 
                         LIMIT ? OFFSET ?
                     ";
                     $stmt = $conn->prepare($articles_query);
@@ -3970,7 +3838,7 @@ if ($view === 'article' && $article_id) {
                         echo '</h5>';
                         echo '<p class="card-text">' . htmlspecialchars(substr(strip_tags($content), 0, 150)) . '...</p>';
                         echo '<div class="meta-info mt-auto">';
-                        echo '<i class="fas fa-user me-1"></i><a href="?view=author&id=' . ($article['author_id'] ?? '') . '&lang=' . $lang . '">' . htmlspecialchars($article['username'] ?? ($lang === 'ur' ? 'نامعلوم مصنف' : 'Unknown Author')) . '</a> • ';
+                        echo '<i class="fas fa-user me-1"></i>' . htmlspecialchars($article['username'] ?? ($lang === 'ur' ? 'نامعلوم مصنف' : 'Unknown Author')) . ' • ';
                         echo '<i class="fas fa-calendar me-1"></i>' . date('M j, Y', strtotime($article['published_at'])) . ' • ';
                         echo '<i class="fas fa-eye me-1"></i>' . $article['views'] . ' ' . ($lang === 'ur' ? 'مناظر' : 'views');
                         echo '</div>';
@@ -4207,9 +4075,9 @@ if ($view === 'article' && $article_id) {
                     echo '<?xml version="1.0" encoding="UTF-8"?>';
                     echo '<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">';
                     echo '<channel>';
-                    echo '<title>Islamic Times - Latest News</title>';
+                    echo '<title>Pakistan Times - Latest News</title>';
                     echo '<link>http://' . $_SERVER['HTTP_HOST'] . $_SERVER['PHP_SELF'] . '</link>';
-                    echo '<description>Latest news and updates from Islamic Times, covering Islamic Studies, Current Affairs, Fiqh, History of Islam, Spirituality, and Muslim World News.</description>';
+                    echo '<description>Latest news and updates from Pakistan Times, covering National, International, Sports, Technology, Business, Entertainment, and Opinion from Pakistan.</description>';
                     echo '<language>en-us</language>';
                     echo '<atom:link href="http://' . $_SERVER['HTTP_HOST'] . $_SERVER['PHP_SELF'] . '?view=rss" rel="self" type="application/rss+xml" />';
                     $articles = $conn->query("
@@ -4284,7 +4152,7 @@ if ($view === 'article' && $article_id) {
                         $is_following_stmt->bind_param("ii", $_SESSION['user_id'], $author_id);
                         $is_following_stmt->execute();
                         $is_following = $is_following_stmt->get_result()->fetch_row()[0] > 0;
-                        echo '<button class="btn btn-sm btn-outline-primary mt-3 follow-button ' . ($is_following ? 'following' : '') . '" data-followed-id="' . $author_id . '">';
+                        echo '<button class="btn btn-sm btn-outline-primary mt-3 follow-button" data-followed-id="' . $author_id . '">';
                         echo '<i class="fas fa-user-plus me-1"></i> <span class="follow-text">' . ($is_following ? ($lang === 'ur' ? 'فالو کر رہے ہیں' : 'Following') : ($lang === 'ur' ? 'فالو کریں' : 'Follow')) . '</span>';
                         echo '</button>';
                     }
@@ -4331,7 +4199,7 @@ if ($view === 'article' && $article_id) {
                         echo '</h5>';
                         echo '<p class="card-text">' . htmlspecialchars(substr(strip_tags($content), 0, 150)) . '...</p>';
                         echo '<div class="meta-info mt-auto">';
-                        echo '<i class="fas fa-user me-1"></i><a href="?view=author&id=' . ($article['author_id'] ?? '') . '&lang=' . $lang . '">' . htmlspecialchars($article['username'] ?? ($lang === 'ur' ? 'نامعلوم مصنف' : 'Unknown Author')) . '</a> • ';
+                        echo '<i class="fas fa-user me-1"></i>' . htmlspecialchars($article['username'] ?? ($lang === 'ur' ? 'نامعلوم مصنف' : 'Unknown Author')) . ' • ';
                         echo '<i class="fas fa-calendar me-1"></i>' . date('M j, Y', strtotime($article['published_at'])) . ' • ';
                         echo '<i class="fas fa-eye me-1"></i>' . $article['views'] . ' ' . ($lang === 'ur' ? 'مناظر' : 'views');
                         echo '</div>';
@@ -4357,21 +4225,6 @@ if ($view === 'article' && $article_id) {
                         echo '</ul></nav>';
                     }
                 }
-                function include_islamic_calendar_view()
-                {
-                    global $lang;
-                    echo '<h2 class="mb-4">' . ($lang === 'ur' ? 'اسلامی کیلنڈر اور اوقات نماز' : 'Islamic Calendar & Prayer Times') . '</h2>';
-                    echo '<div class="card shadow-sm">';
-                    echo '<div class="card-body">';
-                    echo '<h5 class="card-title">' . ($lang === 'ur' ? 'اسلامی تاریخ:' : 'Islamic Date:') . ' <span id="islamic-date"></span></h5>';
-                    echo '<p>' . ($lang === 'ur' ? 'اوقات نماز:' : 'Prayer Times Today:') . '</p>';
-                    echo '<div id="prayer-times-widget">';
-                    echo '<p>' . ($lang === 'ur' ? 'اوقات نماز لوڈ ہو رہے ہیں...' : 'Loading prayer times...') . '</p>';
-                    echo '</div>';
-                    echo '<p class="text-muted mt-3"><small>' . ($lang === 'ur' ? 'اوقات نماز آپ کے موجودہ مقام کے مطابق دکھائے جائیں گے (اگر مقام کی اجازت دی گئی ہو)۔' : 'Prayer times will be shown based on your current location (if location access is granted).') . '</small></p>';
-                    echo '</div>';
-                    echo '</div>';
-                }
                 ?>
             </div>
             <?php if ($view !== 'admin'): ?>
@@ -4380,16 +4233,6 @@ if ($view === 'article' && $article_id) {
                         <h5><i class="fas fa-thermometer-half me-2"></i><?= $lang === 'ur' ? 'موجودہ موسم' : 'Current Weather' ?></h5>
                         <div id="weather-widget">
                             <p><?= $lang === 'ur' ? 'موسم کا ڈیٹا لوڈ ہو رہا ہے...' : 'Loading weather data...' ?></p>
-                        </div>
-                    </div>
-                    <div class="sidebar print-hidden">
-                        <h5><i class="fas fa-moon me-2"></i><?= $lang === 'ur' ? 'اسلامی کیلنڈر' : 'Islamic Calendar' ?></h5>
-                        <div id="islamic-calendar-sidebar">
-                            <p class="mb-1"><strong><?= $lang === 'ur' ? 'آج کی تاریخ:' : 'Today\'s Date:' ?></strong> <span id="hijri-date-sidebar"></span></p>
-                            <p class="mb-1"><strong><?= $lang === 'ur' ? 'اوقات نماز:' : 'Prayer Times:' ?></strong></p>
-                            <ul class="list-unstyled mb-0" id="prayer-times-sidebar">
-                                <li><?= $lang === 'ur' ? 'لوڈ ہو رہا ہے...' : 'Loading...' ?></li>
-                            </ul>
                         </div>
                     </div>
                     <div class="sidebar print-hidden">
@@ -4492,9 +4335,9 @@ if ($view === 'article' && $article_id) {
                         <h5><i class="fas fa-link me-2"></i><?= $lang === 'ur' ? 'فوری روابط' : 'Quick Links' ?></h5>
                         <div class="d-grid gap-2">
                             <a href="?view=breaking&lang=<?= $lang ?>" class="btn btn-outline-danger btn-sm" aria-label="View Breaking News">
-                                <i class="fas fa-bolt me-1"></i><?= $lang === 'ur' ? 'فوری خبریں' : 'Breaking News' ?>
+                                <i class="fas fa-bolt me-1"></i><?= $lang === 'ur' ? 'بریکنگ نیوز' : 'Breaking News' ?>
                             </a>
-                            <a href="?view=contact&lang=<?= $lang ?>" class="btn btn-outline-primary btn-sm" aria-label="Contact Us via Email">
+                            <a href="mailto:info@pakistantimes.pk" class="btn btn-outline-primary btn-sm" aria-label="Contact Us via Email">
                                 <i class="fas fa-envelope me-1"></i><?= $lang === 'ur' ? 'رابطہ کریں' : 'Contact Us' ?>
                             </a>
                         </div>
@@ -4612,7 +4455,7 @@ if ($view === 'article' && $article_id) {
                         <div class="row mb-3">
                             <div class="col-md-6 form-check">
                                 <input class="form-check-input" type="checkbox" name="is_breaking" id="editIsBreaking">
-                                <label class="form-check-label" for="editIsBreaking"><?= $lang === 'ur' ? 'فوری خبر' : 'Breaking News' ?></label>
+                                <label class="form-check-label" for="editIsBreaking"><?= $lang === 'ur' ? 'بریکنگ نیوز' : 'Breaking News' ?></label>
                             </div>
                             <div class="col-md-6 form-check">
                                 <input class="form-check-input" type="checkbox" name="is_sponsored" id="editIsSponsored">
@@ -4852,13 +4695,13 @@ if ($view === 'article' && $article_id) {
         <div class="container">
             <div class="row">
                 <div class="col-md-4 mb-4 mb-md-0">
-                    <h5><?= $lang === 'ur' ? 'اسلامک ٹائمز' : 'Islamic Times' ?></h5>
-                    <p><?= $lang === 'ur' ? 'اسلام کا بہترین آن لائن اخبار، آپ کو تازہ ترین خبروں اور تجزیوں کے ساتھ باخبر رکھتا ہے۔' : 'Islam\'s premier online newspaper, keeping you informed with the latest news and analysis from an Islamic perspective.' ?></p>
+                    <h5><?= $lang === 'ur' ? 'پاکستان ٹائمز' : 'Pakistan Times' ?></h5>
+                    <p><?= $lang === 'ur' ? 'پاکستان کا بہترین آن لائن اخبار، آپ کو تازہ ترین خبروں اور تجزیوں کے ساتھ باخبر رکھتا ہے۔' : 'Pakistan\'s premier online newspaper, keeping you informed with the latest news and analysis.' ?></p>
                     <div class="social-links mt-3">
-                        <a href="https://www.facebook.com/IslamicTimesOfficial" target="_blank" class="me-3 text-white" aria-label="Facebook"><i class="fab fa-facebook-f fa-lg"></i></a>
-                        <a href="https://twitter.com/IslamicTimes" target="_blank" class="me-3 text-white" aria-label="Twitter"><i class="fab fa-twitter fa-lg"></i></a>
-                        <a href="https://www.youtube.com/IslamicTimes" target="_blank" class="me-3 text-white" aria-label="YouTube"><i class="fab fa-youtube fa-lg"></i></a>
-                        <a href="https://www.instagram.com/IslamicTimes" target="_blank" class="text-white" aria-label="Instagram"><i class="fab fa-instagram fa-lg"></i></a>
+                        <a href="https://www.facebook.com/PakistanTimesOfficial" target="_blank" class="me-3 text-white" aria-label="Facebook"><i class="fab fa-facebook-f fa-lg"></i></a>
+                        <a href="https://twitter.com/PakistanTimes" target="_blank" class="me-3 text-white" aria-label="Twitter"><i class="fab fa-twitter fa-lg"></i></a>
+                        <a href="https://www.youtube.com/PakistanTimes" target="_blank" class="me-3 text-white" aria-label="YouTube"><i class="fab fa-youtube fa-lg"></i></a>
+                        <a href="https://www.instagram.com/PakistanTimes" target="_blank" class="text-white" aria-label="Instagram"><i class="fab fa-instagram fa-lg"></i></a>
                     </div>
                 </div>
                 <div class="col-md-2 mb-4 mb-md-0">
@@ -4879,16 +4722,15 @@ if ($view === 'article' && $article_id) {
                     <ul class="list-unstyled">
                         <li><a href="?lang=<?= $lang ?>"><?= $lang === 'ur' ? 'ہوم' : 'Home' ?></a></li>
                         <li><a href="?view=rss" target="_blank"><?= $lang === 'ur' ? 'آر ایس ایس فیڈ' : 'RSS Feed' ?></a></li>
-                        <li><a href="?view=contact&lang=<?= $lang ?>"><?= $lang === 'ur' ? 'رابطہ' : 'Contact' ?></a></li>
+                        <li><a href="mailto:info@pakistantimes.pk"><?= $lang === 'ur' ? 'رابطہ' : 'Contact' ?></a></li>
                         <li><a href="#"><?= $lang === 'ur' ? 'پرائیویسی پالیسی' : 'Privacy Policy' ?></a></li>
                         <li><a href="#"><?= $lang === 'ur' ? 'ہماری بارے میں' : 'About Us' ?></a></li>
-                        <li><a href="?view=islamic-calendar&lang=<?= $lang ?>"><?= $lang === 'ur' ? 'اسلامی کیلنڈر' : 'Islamic Calendar' ?></a></li>
                     </ul>
                 </div>
                 <div class="col-md-3 mb-4 mb-md-0">
                     <h5><?= $lang === 'ur' ? 'رابطہ کی معلومات' : 'Contact Info' ?></h5>
                     <address>
-                        <p class="mb-1"><i class="fas fa-envelope me-2"></i><a href="?view=contact&lang=<?= $lang ?>" class="text-white">info@islamictimes.pk</a></p>
+                        <p class="mb-1"><i class="fas fa-envelope me-2"></i><a href="mailto:info@pakistantimes.pk" class="text-white">info@pakistantimes.pk</a></p>
                         <p class="mb-1" dir="ltr"><i class="fas fa-phone me-2"></i><a href="tel:+922112345678" class="text-white">+92-21-12345678</a></p>
                         <p class="mb-1"><i class="fas fa-map-marker-alt me-2"></i><?= $lang === 'ur' ? 'کراچی، سندھ، پاکستان' : 'Karachi, Sindh, Pakistan' ?></p>
                     </address>
@@ -4897,7 +4739,7 @@ if ($view === 'article' && $article_id) {
             <hr class="my-4 border-light opacity-50">
             <div class="row align-items-center">
                 <div class="col-md-6 text-center text-md-start mb-2 mb-md-0">
-                    <p class="mb-0">&copy; <?= date('Y') ?> <?= $lang === 'ur' ? 'اسلامک ٹائمز۔ تمام حقوق محفوظ ہیں۔' : 'Islamic Times. All rights reserved.' ?></p>
+                    <p class="mb-0">&copy; <?= date('Y') ?> <?= $lang === 'ur' ? 'پاکستان ٹائمز۔ تمام حقوق محفوظ ہیں۔' : 'Pakistan Times. All rights reserved.' ?></p>
                 </div>
                 <div class="col-md-6 text-center text-md-end">
                     <p class="mb-0"><?= $lang === 'ur' ? 'تیار کردہ: یاسین اللہ، پاکستان' : 'Developed by Yasin Ullah, Pakistan' ?></p>
@@ -4913,6 +4755,7 @@ if ($view === 'article' && $article_id) {
 
             const lang = document.documentElement.lang;
 
+            // Translates weather codes from the API to text
             function getWeatherInfo(code) {
                 const codes = {
                     0: {
@@ -4965,7 +4808,7 @@ if ($view === 'article' && $article_id) {
                     },
                     80: {
                         en: 'Slight rain showers',
-                        ur: 'ہلکی بارش کی बौछار'
+                        ur: 'ہلکی بارش کی बौछार'
                     },
                     95: {
                         en: 'Thunderstorm',
@@ -4984,6 +4827,7 @@ if ($view === 'article' && $article_id) {
                         latitude,
                         longitude
                     } = position.coords;
+                    // Request more weather variables from the API
                     const apiUrl = `https://api.open-meteo.com/v1/forecast?latitude=${latitude}&longitude=${longitude}&current=temperature_2m,relativehumidity_2m,apparent_temperature,precipitation,weathercode,windspeed_10m`;
 
                     fetch(apiUrl)
@@ -5034,103 +4878,6 @@ if ($view === 'article' && $article_id) {
                 weatherWidget.innerHTML = `<p class="text-warning">${lang === 'ur' ? 'جغرافیائی مقام معاونت یافتہ نہیں ہے۔' : 'Geolocation is not supported.'}</p>`;
             }
         }
-
-        function getIslamicCalendarAndPrayerTimes() {
-            const hijriDateElement = document.getElementById('hijri-date-sidebar');
-            const prayerTimesList = document.getElementById('prayer-times-sidebar');
-            const islamicDatePage = document.getElementById('islamic-date');
-            const prayerTimesPage = document.getElementById('prayer-times-widget');
-            const lang = document.documentElement.lang;
-
-            if (hijriDateElement) {
-
-                fetch('https://api.aladhan.com/v1/gToH')
-                    .then(response => response.json())
-                    .then(data => {
-                        if (data.data && data.data.hijri) {
-                            const hijri = data.data.hijri;
-                            const day = lang === 'ur' ? convertToUrduNumbers(hijri.day) : hijri.day;
-                            const month = lang === 'ur' ? hijri.month.ar : hijri.month.en;
-                            const year = lang === 'ur' ? convertToUrduNumbers(hijri.year) : hijri.year;
-                            const weekday = lang === 'ur' ? hijri.weekday.ar : hijri.weekday.en;
-
-                            const hijriDateStr = `${weekday}, ${day} ${month} ${year} Hijri`;
-                            if (hijriDateElement) hijriDateElement.textContent = hijriDateStr;
-                            if (islamicDatePage) islamicDatePage.textContent = hijriDateStr;
-                        } else {
-                            if (hijriDateElement) hijriDateElement.textContent = lang === 'ur' ? 'تاریخ دستیاب نہیں' : 'Date unavailable';
-                            if (islamicDatePage) islamicDatePage.textContent = lang === 'ur' ? 'تاریخ دستیاب نہیں' : 'Date unavailable';
-                        }
-                    })
-                    .catch(error => {
-                        console.error('Error fetching Hijri date:', error);
-                        if (hijriDateElement) hijriDateElement.textContent = lang === 'ur' ? 'تاریخ لوڈ کرنے میں ناکامی' : 'Failed to load date';
-                        if (islamicDatePage) islamicDatePage.textContent = lang === 'ur' ? 'تاریخ لوڈ کرنے میں ناکامی' : 'Failed to load date';
-                    });
-            }
-
-            if (prayerTimesList || prayerTimesPage) {
-                if (navigator.geolocation) {
-                    navigator.geolocation.getCurrentPosition(position => {
-                        const {
-                            latitude,
-                            longitude
-                        } = position.coords;
-                        const date = new Date();
-                        const year = date.getFullYear();
-                        const month = date.getMonth() + 1;
-                        const day = date.getDate();
-
-                        const prayerApiUrl = `https://api.aladhan.com/v1/timings/${day}-${month}-${year}?latitude=${latitude}&longitude=${longitude}&method=2`;
-
-                        fetch(prayerApiUrl)
-                            .then(response => response.json())
-                            .then(data => {
-                                if (data.data && data.data.timings) {
-                                    const timings = data.data.timings;
-                                    const prayerNames = {
-                                        Fajr: lang === 'ur' ? 'فجر' : 'Fajr',
-                                        Sunrise: lang === 'ur' ? 'طلوع آفتاب' : 'Sunrise',
-                                        Dhuhr: lang === 'ur' ? 'ظہر' : 'Dhuhr',
-                                        Asr: lang === 'ur' ? 'عصر' : 'Asr',
-                                        Maghrib: lang === 'ur' ? 'مغرب' : 'Maghrib',
-                                        Isha: lang === 'ur' ? 'عشاء' : 'Isha'
-                                    };
-
-                                    let sidebarHtml = '';
-                                    let pageHtml = '<ul class="list-unstyled">';
-
-                                    ['Fajr', 'Sunrise', 'Dhuhr', 'Asr', 'Maghrib', 'Isha'].forEach(p => {
-                                        const time = timings[p];
-                                        const displayTime = lang === 'ur' ? convertToUrduNumbers(time) : time;
-                                        sidebarHtml += `<li><strong>${prayerNames[p]}:</strong> <span dir="ltr">${displayTime}</span></li>`;
-                                        pageHtml += `<li><strong>${prayerNames[p]}:</strong> <span dir="ltr">${displayTime}</span></li>`;
-                                    });
-                                    pageHtml += '</ul>';
-
-                                    if (prayerTimesList) prayerTimesList.innerHTML = sidebarHtml;
-                                    if (prayerTimesPage) prayerTimesPage.innerHTML = pageHtml;
-                                } else {
-                                    if (prayerTimesList) prayerTimesList.innerHTML = `<li>${lang === 'ur' ? 'اوقات نماز دستیاب نہیں' : 'Prayer times unavailable'}</li>`;
-                                    if (prayerTimesPage) prayerTimesPage.innerHTML = `<p class="text-danger">${lang === 'ur' ? 'اوقات نماز دستیاب نہیں' : 'Prayer times unavailable'}</p>`;
-                                }
-                            })
-                            .catch(error => {
-                                console.error('Error fetching prayer times:', error);
-                                if (prayerTimesList) prayerTimesList.innerHTML = `<li>${lang === 'ur' ? 'اوقات نماز لوڈ کرنے میں ناکامی' : 'Failed to load prayer times'}</li>`;
-                                if (prayerTimesPage) prayerTimesPage.innerHTML = `<p class="text-danger">${lang === 'ur' ? 'اوقات نماز لوڈ کرنے میں ناکامی' : 'Failed to load prayer times'}</p>`;
-                            });
-                    }, () => {
-                        if (prayerTimesList) prayerTimesList.innerHTML = `<li>${lang === 'ur' ? 'مقام کی اجازت درکار ہے۔' : 'Location access denied for prayer times.'}</li>`;
-                        if (prayerTimesPage) prayerTimesPage.innerHTML = `<p class="text-warning">${lang === 'ur' ? 'مقام کی اجازت درکار ہے۔' : 'Location access denied for prayer times.'}</p>`;
-                    });
-                } else {
-                    if (prayerTimesList) prayerTimesList.innerHTML = `<li>${lang === 'ur' ? 'جغرافیائی مقام معاونت یافتہ نہیں ہے۔' : 'Geolocation not supported for prayer times.'}</li>`;
-                    if (prayerTimesPage) prayerTimesPage.innerHTML = `<p class="text-warning">${lang === 'ur' ? 'جغرافیائی مقام معاونت یافتہ نہیں ہے۔' : 'Geolocation not supported for prayer times.'}</p>`;
-                }
-            }
-        }
-
 
         function toggleTheme() {
             const body = document.body;
@@ -5199,7 +4946,6 @@ if ($view === 'article' && $article_id) {
         });
         document.addEventListener('DOMContentLoaded', function() {
             getLiveWeather();
-            getIslamicCalendarAndPrayerTimes();
             const forms = document.querySelectorAll('.needs-validation');
             Array.prototype.slice.call(forms)
                 .forEach(function(form) {
@@ -5245,7 +4991,7 @@ if ($view === 'article' && $article_id) {
                     const url = window.URL.createObjectURL(blob);
                     const a = document.createElement('a');
                     a.href = url;
-                    a.download = 'islamic_newspaper_backup_' + new Date().toISOString().slice(0, 10) + '.json';
+                    a.download = 'newspaper_backup_' + new Date().toISOString().slice(0, 10) + '.json';
                     document.body.appendChild(a);
                     a.click();
                     a.remove();
